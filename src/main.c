@@ -1,7 +1,7 @@
 #include "main.h"
 
 void main(void) {
-    FILE *f = fopen("book.txt", "r");
+    FILE *f = fopen(BOOK "r");
     if (!f) {
         perror("Error opening file");
         exit(1);
@@ -13,9 +13,9 @@ void main(void) {
             char title[256];
             sscanf(line, "<chapter id=\"%[^\"]\">%[^<]", id, title);
             FILE* file = create_file(id);
-            }  
-        }
+        }  
     }
+}
 
 
 FILE* create_file(char* id){    
@@ -29,3 +29,18 @@ FILE* create_file(char* id){
     return file;
 }
 
+void print_line(FILE* file, char* line) {
+    char content[256], balise[64], id[16];
+    sscanf(line, "%*[^>]>%[^<]", content);
+
+    sscanf(line, "<%[^> >]", balise);
+    if(strcmp(balise, "chapter") == 0) strcpy(balise, "h1");
+    if(strcmp(balise, "choice") == 0) strcpy(balise, "p");
+
+    fprintf(file, "<%s>%s", balise, content);
+    if(strstr(line, "<a")) {
+        sscanf(line, "%*[^\"]\"%[^\"]", id);
+        fprintf(file, "<a href=\"%s\">Chapitre %s</a>", id, id);
+    }
+    fprintf(file, "</%s>\n", balise);
+}
