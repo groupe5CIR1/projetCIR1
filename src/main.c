@@ -1,7 +1,7 @@
 #include "main.h"
 
 void main(void) {
-    FILE *f = fopen(BOOK "r");
+    FILE *f = fopen(BOOK, "r");
     if (!f) {
         perror("Error opening file");
         exit(1);
