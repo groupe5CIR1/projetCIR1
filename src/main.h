@@ -6,3 +6,4 @@
 
 void print_line(FILE *file, char* line);
 
+FILE* create_file(char* filename);
