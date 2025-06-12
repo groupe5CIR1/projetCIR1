@@ -12,8 +12,6 @@ void main(void) {
             char id[128];
             char title[256];
             sscanf(line, "<chapter id=\"%[^\"]\">%[^<]", id, title);
-            printf("id = %s\n",id);
-            printf("title = %s\n",title);
             FILE* file = create_file(id);
             }  
         }
