@@ -4,11 +4,16 @@ void main(void) {
 
 }
 
-FILE* create_file(char* filename){
-    FILE *file = fopen(filename, "w");
+
+
+FILE* create_file(char* id){
+    char filename[128];
+    snprintf(filename, sizeof(filename), "%s.html", id);
+    FILE *file = fopen(id, "w");
     if (!file) {
-        perror("Erreur lors de la création du fichier");
-        return 1;
+        perror("Error opening file");
+        exit(1);
     }
     return file;
 }
+
