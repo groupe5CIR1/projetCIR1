@@ -7,20 +7,19 @@ void main(void) {
         perror("Error opening file");
         exit(1);
     }
+    struct stat st = {0};
+    if(stat("export", &st) == -1) mkdir("export", 0700);
     char line[LINE_SIZE];
     while(fgets(line, sizeof(line), f)) {
         if (strstr(line, "<chapter") != NULL) {
-            if(file != NULL){
-                fclose(file);
-            }
-            char id[128];
-            char title[256];
+            if(file != NULL) fclose(file);
+            char id[128], title[256];
             sscanf(line, "<chapter id=\"%[^\"]\">%[^<]", id, title);
             file = create_file(id);
         }  
-        print_line(&file, line);
+        print_line(file, line);
     }
-    fclose(file);
+    if(file) fclose(file);
     fclose(f);
 }
 
