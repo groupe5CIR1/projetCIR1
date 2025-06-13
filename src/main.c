@@ -12,14 +12,14 @@ void main(void) {
     char line[LINE_SIZE];
     while(fgets(line, sizeof(line), f)) {
         if (strstr(line, "<chapter") != NULL) {
-            if(file != NULL) fclose(file);
+            if(file != NULL) end_file(file);
             char id[128], title[256];
             sscanf(line, "<chapter id=\"%[^\"]\">%[^<]", id, title);
             file = create_file(id);
         }  
         print_line(file, line);
     }
-    if(file) fclose(file);
+    if(file) end_file(file);
     fclose(f);
 }
 
@@ -32,7 +32,25 @@ FILE* create_file(char* id){
         perror("Error opening file");
         exit(1);
     }
+    init_file(file, id);
     return file;
+}
+
+void init_file(FILE* file, char* id) {
+    char* html_init =
+        "<!DOCTYPE html>\n"
+        "<html lang=\"fr\">\n"
+            "<head>\n"
+            "<meta charset=\"utf-8\">\n"
+            "<title> Chapitre %s </title>\n"
+        "</head>\n"
+        "<body>\n";
+    fprintf(file, html_init, id);
+}
+
+void end_file(FILE* file) {
+    fprintf(file, "</body>\n</html>\n");
+    fclose(file);
 }
 
 void print_line(FILE* file, char* line) {
@@ -46,7 +64,7 @@ void print_line(FILE* file, char* line) {
     fprintf(file, "<%s>%s", balise, content);
     if(strstr(line, "<a")) {
         sscanf(line, "%*[^\"]\"%[^\"]", id);
-        fprintf(file, "<a href=\"%s\">Chapitre %s</a>", id, id);
+        fprintf(file, "<a href=\"%s.html\">Chapitre %s</a>", id, id);
     }
     fprintf(file, "</%s>\n", balise);
 }
