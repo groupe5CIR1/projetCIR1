@@ -1,3 +1,5 @@
+#ifndef PRINT_BOOK
+#define PRINT_BOOK
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -5,6 +7,7 @@
 
 #define LINE_SIZE 512
 #define BOOK "book.txt"
+#endif
 
 void print_book();
 FILE* create_file(char* filename);
