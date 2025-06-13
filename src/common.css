@@ -1,0 +1,45 @@
+
+html, body {
+   height: 100%;
+   margin: 0;
+   padding: 0;
+        }
+
+body::before {
+   content: "";
+   position: fixed;
+   top: 0; left: 0; right: 0; bottom: 0;
+   background: url("knight_background_gpt.png") no-repeat center center fixed;
+   background-size: cover;
+   filter: blur(5px); /* Flou appliqué ici */
+   z-index: -1;
+ }
+
+body {
+    font-family: sans-serif;
+    color: white;
+    padding: 2rem;
+}
+
+#texte {
+    border: 4px white solid;
+    background: rgba(0, 0, 0, 0.4); /* semi-transparent noir */
+    padding: 1rem;
+    border-radius: 16px;
+    margin: 8px;
+}
+a, a:visited, a:hover, a:active {
+    color: black;
+    text-decoration: none; /* Optionnel : enlève le soulignement */
+}
+
+
+p{
+    /*css...*/
+}
+
+p:has(a)::before {
+    content: "➤ ";
+    margin-right: 0.5em;
+    margin-left: 50px;
+}

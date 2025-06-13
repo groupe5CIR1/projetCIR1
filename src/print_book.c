@@ -41,15 +41,17 @@ void init_file(FILE* file, char* id) {
         "<!DOCTYPE html>\n"
         "<html lang=\"fr\">\n"
             "<head>\n"
+            "<link rel=\"stylesheet\" href=\"../common.css\">"
             "<meta charset=\"utf-8\">\n"
             "<title> Chapitre %s </title>\n"
         "</head>\n"
-        "<body>\n";
+        "<body>\n"
+        "<div id =\"texte\">";
     fprintf(file, html_init, id);
 }
 
 void end_file(FILE* file) {
-    fprintf(file, "</body>\n</html>\n");
+    fprintf(file, "</div></body>\n</html>\n");
     fclose(file);
 }
 
