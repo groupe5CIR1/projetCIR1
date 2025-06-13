@@ -54,7 +54,8 @@ void end_file(FILE* file) {
 }
 
 void print_line(FILE* file, char* line) {
-    char content[512], balise[64], id[16];
+    if (strlen(line) < 3) return;
+    char content[2048], balise[64], id[16];
     sscanf(line, "%*[^>]>%[^<]", content);
 
     sscanf(line, "<%[^> ]", balise);
