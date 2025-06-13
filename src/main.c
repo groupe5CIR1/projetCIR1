@@ -2,6 +2,7 @@
 
 void main(void) {
     FILE *f = fopen(BOOK, "r");
+    FILE *file;
     if (!f) {
         perror("Error opening file");
         exit(1);
@@ -9,12 +10,18 @@ void main(void) {
     char line[LINE_SIZE];
     while(fgets(line, sizeof(line), f)) {
         if (strstr(line, "<chapter") != NULL) {
+            if(file != NULL){
+                fclose(file);
+            }
             char id[128];
             char title[256];
             sscanf(line, "<chapter id=\"%[^\"]\">%[^<]", id, title);
-            FILE* file = create_file(id);
+            file = create_file(id);
         }  
+        print_line(&file, line);
     }
+    fclose(file);
+    fclose(f);
 }
 
 
@@ -33,7 +40,7 @@ void print_line(FILE* file, char* line) {
     char content[256], balise[64], id[16];
     sscanf(line, "%*[^>]>%[^<]", content);
 
-    sscanf(line, "<%[^> >]", balise);
+    sscanf(line, "<%[^> ]", balise);
     if(strcmp(balise, "chapter") == 0) strcpy(balise, "h1");
     if(strcmp(balise, "choice") == 0) strcpy(balise, "p");
 
