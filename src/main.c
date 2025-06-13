@@ -2,7 +2,7 @@
 
 void main(void) {
     FILE *f = fopen(BOOK, "r");
-    FILE *file;
+    FILE *file = NULL;
     if (!f) {
         perror("Error opening file");
         exit(1);
