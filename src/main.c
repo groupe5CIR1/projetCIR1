@@ -50,3 +50,4 @@ void print_line(FILE* file, char* line) {
     }
     fprintf(file, "</%s>\n", balise);
 }
+
