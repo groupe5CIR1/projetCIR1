@@ -8,11 +8,12 @@
 #include "armor.h"
 #include "inventory.h"
 
-#define MAX_SLOTS 5
+#define MAX_SLOTS 6
 
 
 struct Entity {
     int uid;
+    bool loaded;
     char* type;
     unsigned int health;
     int defaultDamage;
@@ -23,7 +24,7 @@ struct Entity {
 
 struct Entity* init_entity(char* entity);
 
-void damage(struct Entity* player, struct Entity* entity);
+void damage(struct Entity* entity, struct Entity* entity2);
 
 void equip_shield();
 

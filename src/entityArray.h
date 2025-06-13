@@ -9,4 +9,11 @@ void remove_entity_array(struct Entity* array, struct Entity* entity);
 
 struct Entity* get_entity_array(struct Entity* array, int uid);
 
+
+struct Entity* init_loaded_entity_array();
+
+void load_entity(struct Entity* array, struct Entity* entity);
+
+void unload_entity(struct Entity* array, struct Entity* entity);
+
 #endif
