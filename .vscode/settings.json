@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "main.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "player.C": "cpp"
     }
 }
