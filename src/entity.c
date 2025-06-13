@@ -6,6 +6,7 @@ For inventory management, see inventory.c
 
 #include "entityArray.h"
 #include "entity.h"
+#include "inventory.h"
 
 struct Entity entity_init(int type){
     float health;
@@ -21,7 +22,14 @@ struct Entity entity_init(int type){
         health = 90.0;
         break;
     }
+    //switch pour les defaults damage
     //il faudra init inventory et possiblement uid (shield et armor si on a le temps)
-    return (struct Entity) {.uid = NULL, .loaded = 1, .type = type , .health = health, .defaultDamage = NULL, .shield = 0, };
+    return (struct Entity) {.uid = NULL, .loaded = 1, .type = type , .health = health, .defaultDamage = NULL, .shield = 0, .armor = NULL, .inventory = NULL };
+}
+
+void damage(struct Entity* attacker, struct Entity* defender){
+    float multiplier = attacker->inventory->multiplier ? attacker->inventory->multiplier:1;
+    defender->health -= attacker->defaultDamage * multiplier;
+    //ajouter armure
 }
 
