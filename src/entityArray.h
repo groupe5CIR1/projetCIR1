@@ -1,6 +1,11 @@
 #ifndef ENTITY_ARRAY
 #define ENTITY_ARRAY
 
+struct Entities {
+    struct Entity* entity_array;
+    struct Entity* loaded_entities;
+};
+
 struct Entity* init_entity_array();
 
 void add_entity_array(struct Entity* array, struct Entity* entity);
