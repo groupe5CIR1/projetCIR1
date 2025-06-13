@@ -6,7 +6,7 @@
 #include <sys/stat.h>
 
 #define LINE_SIZE 512
-#define BOOK "book.txt"
+#define BOOK "src/book.txt"
 
 void print_book();
 FILE* create_file(char* filename);

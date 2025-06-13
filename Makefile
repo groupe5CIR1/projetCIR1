@@ -1,13 +1,15 @@
-all: uwu clean
+objects = src/main.o src/print_book.o
 
-uwu: main.o print_book.o
-	gcc -Wall -o uwu main.o print_book.o
+all: src/uwu
 
-main.o: main.c print_book.h
-	gcc -Wall -c main.c
+src/uwu: $(objects)
+	gcc -Wall -o src/uwu $(objects)
 
-print_book.o: print_book.c print_book.h
-	gcc -Wall -c print_book.c
+src/main.o: src/main.c src/print_book.h
+	gcc -Wall -c src/main.c -o src/main.o
+
+src/print_book.o: src/print_book.c src/print_book.h
+	gcc -Wall -c src/print_book.c -o src/print_book.o
 
 clean:
-	rm -f *.o uwu
+	rm -f $(objects) src/uwu src/export/*.html

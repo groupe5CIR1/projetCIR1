@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jun 13 10:27:17 2025
+# Make data base, printed on Fri Jun 13 11:55:01 2025
 
 # Variables
 
@@ -50,6 +48,8 @@ MAKEFLAGS = pqrR
 CURDIR := /home/isen/C_WSL/Projet/projetCIR1
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+VSCODE_L10N_BUNDLE_LOCATION = 
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -59,6 +59,7 @@ MFLAGS = -pqrR
 # environment
 WSL2_GUI_APPS_ENABLED = 1
 # environment
+ 
 WAYLAND_DISPLAY = wayland-0
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
@@ -80,6 +81,8 @@ MAKE_HOST := x86_64-pc-linux-gnu
 SHELL = /bin/sh
 # default
 MAKECMDGOALS := all
+# makefile (from 'Makefile', line 1)
+objects = src/main.o src/print_book.o
 # environment
 SHLVL = 0
 # environment
@@ -113,10 +116,11 @@ LOGNAME = isen
 # environment
 VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/doorm/.vscode/extensions/ms-vscode-remote.remote-wsl-0.99.0
 # makefile
-.DEFAULT_GOAL := 
+.DEFAULT_GOAL := all
 # environment
 DISPLAY = :0
 # environment
+ 
 USER = isen
 # default
 MAKE_VERSION := 4.3
@@ -145,7 +149,7 @@ WSL_DISTRO_NAME = Debian
 # environment
 VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # variable set hash-table stats:
-# Load=66/1024=6%, Rehash=0, Collisions=1/95=1%
+# Load=68/1024=7%, Rehash=0, Collisions=2/99=2%
 
 # Pattern-specific Variable Values
 
@@ -153,9 +157,9 @@ VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 
 # Directories
 
-# . (device 2096, inode 35089): 9 files, no impossibilities.
+# . (device 2096, inode 35089): 10 files, no impossibilities.
 
-# 9 files, no impossibilities in 1 directories.
+# 10 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -164,11 +168,40 @@ VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # Files
 
 # Not a target:
-Makefile:
+src/print_book.h:
 #  Implicit rule search has been done.
-#  Last modified 2025-06-12 10:30:00.091849924
+#  Last modified 2025-06-13 11:15:57.491627599
 #  File has been updated.
 #  Successfully updated.
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2025-06-13 11:54:05.60644516
+#  File has been updated.
+#  Successfully updated.
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 15):
+	rm -f $(objects) src/uwu
+
+# Not a target:
+src/main.c:
+#  Implicit rule search has been done.
+#  Last modified 2025-06-13 11:52:41.478484359
+#  File has been updated.
+#  Successfully updated.
+
+src/main.o: src/main.c src/print_book.h
+#  Implicit rule search has not been done.
+#  Last modified 2025-06-13 11:54:31.318431536
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 9):
+	gcc -Wall -c src/main.c -o src/main.o
 
 # Not a target:
 .DEFAULT:
@@ -176,27 +209,51 @@ Makefile:
 #  Modification time never checked.
 #  File has not been updated.
 
-# Not a target:
-all:
+all: src/uwu
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
-#  File has not been updated.
+#  File has been updated.
+#  Successfully updated.
+
+src/print_book.o: src/print_book.c src/print_book.h
+#  Implicit rule search has not been done.
+#  Last modified 2025-06-13 11:54:31.354431517
+#  File has been updated.
+ 
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 12):
+	gcc -Wall -c src/print_book.c -o src/print_book.o
+
+# Not a target:
+src/print_book.c:
+#  Implicit rule search has been done.
+#  Last modified 2025-06-13 11:12:08.867745807
+#  File has been updated.
+#  Successfully updated.
+
+src/uwu: src/main.o src/print_book.o
+#  Implicit rule search has not been done.
+#  Last modified 2025-06-13 11:54:31.442431469
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 6):
+	gcc -Wall -o src/uwu $(objects)
 
 # files hash-table stats:
-# Load=4/1024=0%, Rehash=0, Collisions=0/14=0%
+# Load=11/1024=1%, Rehash=0, Collisions=0/32=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 14 / storage = 116 B / avg = 8 B
-# current buf: size = 8162 B / used = 116 B / count = 14 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 22 / storage = 210 B / avg = 9 B
+# current buf: size = 8162 B / used = 210 B / count = 22 / avg = 9 B
 
-# strcache performance: lookups = 18 / hit rate = 22%
+# strcache performance: lookups = 36 / hit rate = 38%
 # hash-table stats:
-# Load=14/8192=0%, Rehash=0, Collisions=0/18=0%
-# Finished Make data base on Fri Jun 13 10:27:17 2025
+# Load=22/8192=0%, Rehash=0, Collisions=0/36=0%
+# Finished Make data base on Fri Jun 13 11:55:01 2025
 
  

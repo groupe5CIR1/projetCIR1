@@ -1,6 +1,5 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory '/home/isen/C_WSL/Projet/projetCIR1'
+make: Nothing to be done for 'all'.
 make: Leaving directory '/home/isen/C_WSL/Projet/projetCIR1'
  
-make: *** No targets.  Stop.
-

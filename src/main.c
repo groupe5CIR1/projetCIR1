@@ -1,7 +1,9 @@
 #include "print_book.h"
 
-void main(void) {
+int main(void) {
     print_book();
     //trucs
+
+    return 0;
 }
 

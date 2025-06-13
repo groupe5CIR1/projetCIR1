@@ -8,7 +8,7 @@ void print_book() {
         exit(1);
     }
     struct stat st = {0};
-    if(stat("export", &st) == -1) mkdir("export", 0700);
+    if(stat("src/export", &st) == -1) mkdir("src/export", 0700);
     char line[LINE_SIZE];
     while(fgets(line, sizeof(line), f)) {
         if (strstr(line, "<chapter") != NULL) {
@@ -26,7 +26,7 @@ void print_book() {
 
 FILE* create_file(char* id){    
     char filename[256];
-    snprintf(filename, sizeof(filename), "export/%s.html", id);
+    snprintf(filename, sizeof(filename), "src/export/%s.html", id);
     FILE *file = fopen(filename, "w");
     if (!file) {
         perror("Error opening file");
