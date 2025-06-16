@@ -17,6 +17,14 @@ enum Type{
     ENNEMY,
 };
 
+
+
+struct Inventory{
+struct Item* inventory[MAX_SLOTS];
+int size;
+bool weapon;
+};
+
 struct Entity {
     int uid;
     bool loaded;
@@ -25,13 +33,18 @@ struct Entity {
     int defaultDamage;
     bool shield;
     struct Armor* armor;
-    struct Item* inventory;
+    struct Inventory* inventory;
 };
 
 
 struct Entity init_entity(int type);
 
 void damage(struct Entity* entity, struct Entity* entity2);
+
+void death(struct Entity* entity);
+
+void fight(struct Entity* Player, struct Entity* ennemy);
+
 
 void equip_shield();
 

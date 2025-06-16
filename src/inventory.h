@@ -5,10 +5,28 @@
 #include <stdlib.h>
 
 struct Item {
-    char* name;
+    int name;
+    int type;
     float multiplier;
     unsigned int durability;
 };
+
+
+/* 
+enum ITEM{
+potion
+weapon
+}
+
+
+
+enume Name{
+arme_incroyable_sagranmer
+deuxieme_arme_incroyable_sa_granmer
+}
+*/
+
+
 
 void pick_up(struct Entity* player, struct Item item);
 
