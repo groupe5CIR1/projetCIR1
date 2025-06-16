@@ -1,4 +1,4 @@
-*.o
-*.exe
-*.css
-export/*.html
+src/*.o
+src/*.exe
+src/*.css
+src/export/*.html
