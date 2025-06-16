@@ -20,9 +20,9 @@ enum Type{
 
 
 struct Inventory{
-struct Item* inventory[MAX_SLOTS];
-int size;
-bool weapon;
+    struct Item* inventory[MAX_SLOTS];
+    int size;
+    int weapon;
 };
 
 struct Entity {
