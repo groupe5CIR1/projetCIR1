@@ -34,9 +34,9 @@ struct Inventory {
 
 
 
-void pick_up(struct Inventory* inv);
+void pick_up(struct Inventory* inv, struct Item* item);
 
-void drop_item(struct Inventory* inv);
+void drop_item(struct Inventory* inv, struct Item* item);
 
 void update_item_dura(struct Inventory* inv);
 
