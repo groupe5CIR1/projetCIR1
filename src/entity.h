@@ -19,12 +19,6 @@ enum Type{
 
 
 
-struct Inventory{
-    struct Item* inventory[MAX_SLOTS];
-    int size;
-    int weapon;
-};
-
 struct Entity {
     int uid;
     bool loaded;

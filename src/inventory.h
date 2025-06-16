@@ -11,6 +11,11 @@ struct Item {
     unsigned int durability;
 };
 
+struct Inventory{
+    struct Item* inventory[MAX_SLOTS];
+    int size;
+    int weapon;
+};
 
 /* 
 enum ITEM{
