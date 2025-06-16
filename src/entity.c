@@ -42,15 +42,15 @@ void damage(struct Entity* attacker, struct Entity* defender){
 void fight(struct Entities* entities, struct Entity* player, struct Entity* ennemy){
     damage(player, ennemy);
     if(ennemy->health <= 0){
-        death(entities, ennemy);
+        death(entities, &ennemy);
     }
     damage(ennemy, player);
     if(player->health <=0){
-        death(entities, player);
+        death(entities,&player);
     }
 }
-
-void death(struct Entities* entities, struct Entity* dead_guy_lol_sounds_like_a_skill_issue) {
+ 
+void death(struct Entities* entities, struct Entity* dead_guy_lol_sounds_like_a_skill_issue){
     struct Inventory* Inventory = dead_guy_lol_sounds_like_a_skill_issue->inventory->slots;
     for(int i=0; i < Inventory->size; i++){
         drop_item(dead_guy_lol_sounds_like_a_skill_issue->inventory, &Inventory[i]);

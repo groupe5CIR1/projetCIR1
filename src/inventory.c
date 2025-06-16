@@ -35,12 +35,31 @@ struct Item create_item(int name, int type) {
 
 
 void pick_up(struct Inventory* inv, struct Item* item) {
-
+    if(!inv || !item) return;
+    if(inv->size >= 6 ){
+        //demander de drop un item
+    }
+    inv->slots[inv->size] = *item;
+    return;
 }
 
 
 void drop_item(struct Inventory* inv, struct Item* item) {
+    if(!inv || !item) return;
+    for(int i=0; i< inv->size; i++){
+        if(&inv->slots[i] == item){
+            for(int j=i; i < inv->size; j++){
+                inv->slots[j]=inv->slots[j+1];
+            }
+            inv->size--;
+            if (inv->weapon == i) inv->weapon = -1;
+            else if (inv->weapon > i) inv->weapon--;
 
+            if (inv->selected == i) inv->selected = -1;
+            else if (inv->selected > i) inv->selected--;
+        }
+
+    }
 }
 
 void update_item_dura(struct Inventory* inv) {

@@ -26,7 +26,7 @@ struct Item {
 };
 
 struct Inventory {
-    struct Item slots[MAX_SLOTS];
+    struct Item slots[MAX_SLOTS];   
     int size;
     int weapon;
     int selected;
