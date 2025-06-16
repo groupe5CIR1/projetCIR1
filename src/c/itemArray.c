@@ -2,7 +2,7 @@
 Manages the list of the existing items in a dynamic array.
 */
 
-#include "itemArray.h"
+#include "../headers/itemArray.h"
 
 struct ItemArray init_item_array() {
     struct Entity* array = malloc(2*sizeof(struct Item));
