@@ -36,11 +36,7 @@ struct Inventory {
 
 void pick_up(struct Inventory* inv, struct Item* item);
 
-<<<<<<< HEAD
-void drop_item(struct Item item);
-=======
 void drop_item(struct Inventory* inv, struct Item* item);
->>>>>>> 307416c565047cd7b8752d0c2863cfe3a816c0de
 
 void update_item_dura(struct Inventory* inv);
 
