@@ -39,23 +39,24 @@ void damage(struct Entity* attacker, struct Entity* defender){
     //ajouter armure
 }
 
-void fight(struct Entity* player, struct Entity* ennemy){
+void fight(struct Entities* entities, struct Entity* player, struct Entity* ennemy){
     damage(player, ennemy);
     if(ennemy->health <= 0){
-        death(&player, &ennemy);
+        death(entities,&player, &ennemy);
     }
     damage(ennemy, player);
     if(player->health <=0){
-        death(&ennemy, &player);
+        death(entities,&ennemy, &player);
     }
 }
 
-void death(struct Entity* winner, struct Entity* dead_guy_lol_sounds_like_a_skill_issue){
+void death(struct Entities* entities,struct Entity* winner, struct Entity* dead_guy_lol_sounds_like_a_skill_issue){
     struct Inventory* Inventory = dead_guy_lol_sounds_like_a_skill_issue->inventory->slots;
     for(int i=0; i < Inventory->size; i++){
-        drop_item();
-        printf("caca");
+        drop_item(dead_guy_lol_sounds_like_a_skill_issue->inventory, &Inventory[i]);
     }
+    unload_entity(entities->loadedEntities, dead_guy_lol_sounds_like_a_skill_issue->uid);
+    remove_entity_array(entities->entityArray, dead_guy_lol_sounds_like_a_skill_issue->uid);
 }
 
 

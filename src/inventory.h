@@ -40,4 +40,4 @@ void drop_item(struct Inventory* inv, struct Item* item);
 
 void update_item_dura(struct Inventory* inv);
 
-#endif
+#endif 
