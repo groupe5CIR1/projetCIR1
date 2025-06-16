@@ -1,5 +1,5 @@
-#include "entityArray.h"
-#include "entity.h"
+#include "../headers/entityArray.h"
+#include "../headers/entity.h"
 
 struct EntityArray init_entity_array() {
     struct Entity* array = malloc(2*sizeof(struct Entity));

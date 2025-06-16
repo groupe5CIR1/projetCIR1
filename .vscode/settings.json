@@ -3,6 +3,7 @@
         "main.h": "c",
         "stdio.h": "c",
         "player.C": "cpp",
-        "armor.h": "c"
+        "armor.h": "c",
+        "inventory.h": "c"
     }
 }

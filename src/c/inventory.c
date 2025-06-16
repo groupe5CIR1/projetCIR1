@@ -4,8 +4,8 @@ For entity management, see entity.c
 For armor management, see armor.c
 */
 
-#include "inventory.h"
-#include "itemArray.h"
+#include "../headers/inventory.h"
+#include "../headers/itemArray.h"
 
 
 

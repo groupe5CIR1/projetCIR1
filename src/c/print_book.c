@@ -1,4 +1,4 @@
-#include "print_book.h"
+#include "../headers/print_book.h"
 
 void print_book() {
     FILE *f = fopen(BOOK, "r");
