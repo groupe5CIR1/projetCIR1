@@ -42,6 +42,6 @@ void drop_item(struct Inventory* inv, struct Item* item);
 
 void update_item_dura(struct Inventory* inv);
 
-void remove_item(struct Inventory* inv, struct Item* item);
+void remove_item(struct ItemArray* Arr, struct Inventory* inv, struct Item* item);
 
 #endif
