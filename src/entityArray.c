@@ -58,16 +58,11 @@ void remove_entity_array(struct EntityArray* Arr, int uid) {
 }
 
 void free_entity_array(struct EntityArray* Arr) {
-    if (Arr == NULL) return;
-    if (Arr->entity_array != NULL) {
-        for (int i=0; i < Arr->size; i++) {
-            free_entity(&Arr->entity_array[i]);
-        }
-        free(Arr->entity_array);
-        Arr->entity_array = NULL;
+    if (Arr->entity_array == NULL) return;
+    for (int i=0; i < Arr->size; i++) {
+        free_entity(&Arr->entity_array[i]);
     }
-    Arr->size = 0;
-    Arr->capacity = 0;
+    free(Arr->entity_array);
 }
 
 
