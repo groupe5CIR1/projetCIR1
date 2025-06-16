@@ -34,13 +34,13 @@ struct Inventory {
 
 
 
-struct Item create_item(int name, int type);
+struct Item create_item(struct ItemArray* Arr, int name, int type);
 
 void pick_up(struct Inventory* inv, struct Item* item);
 
 void drop_item(struct Inventory* inv, struct Item* item);
 
-void update_item_dura(struct Inventory* inv);
+void update_item_dura(struct ItemArray* Arr, struct Inventory* inv);
 
 void remove_item(struct ItemArray* Arr, struct Inventory* inv, struct Item* item);
 

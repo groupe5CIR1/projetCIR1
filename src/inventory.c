@@ -9,7 +9,7 @@ For armor management, see armor.c
 
 
 
-struct Item create_item(int name, int type) {
+struct Item create_item(struct ItemArray* Arr, int name, int type) {
     float dura, multiplier;
     if(type == WEAPON) {
         switch (name) {
@@ -31,7 +31,9 @@ struct Item create_item(int name, int type) {
             break;
         }
     }
-    return (struct Item) {.name = name, .type = type, .multiplier = multiplier, .durability = dura};
+    struct Item item = {.name = name, .type = type, .multiplier = multiplier, .durability = dura};
+    add_item_array(Arr, &item);
+    return (struct Item) item;
 }
 
 
