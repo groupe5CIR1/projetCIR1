@@ -6,6 +6,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+enum ITEM{
+    potion,
+    weapon
+};
+
+enum NAME {
+    ARME_INCROYABLE_SA_GRANMERE,
+    DEUXIEME_ARME_INCROYABLE_SA_GRANMERE
+};
+
+
 struct Item {
     int name;
     int type;
@@ -13,30 +24,19 @@ struct Item {
     unsigned int durability;
 };
 
-struct Inventory{
-    struct Item* inventory[MAX_SLOTS];
+struct Inventory {
+    struct Item inventory[MAX_SLOTS];
     int size;
     int weapon;
 };
 
-/* 
-enum ITEM{
-potion
-weapon
-}
 
 
 
-enume Name{
-arme_incroyable_sagranmer
-deuxieme_arme_incroyable_sa_granmer
-}
-*/
+void pick_up(struct Inventory* inv, struct Item item);
 
+void drop_item(struct Inventory* inv, struct Item item);
 
-
-void pick_up(struct Entity* player, struct Item item);
-
-void drop_item(struct Entity* entity, struct Item item);
+void update_item_dura(struct Inventory* inv);
 
 #endif
