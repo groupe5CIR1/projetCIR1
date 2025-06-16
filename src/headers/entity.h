@@ -43,7 +43,7 @@ void damage(struct Entity* entity, struct Entity* entity2);
 
 void death(struct Entities* entities, struct Entity* entity);
 
-void fight(struct Entity* Player, struct Entity* ennemy);
+void fight(struct Entities* entities, struct Entity* Player, struct Entity* ennemy);
 
 
 void equip_shield();
