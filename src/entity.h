@@ -41,7 +41,7 @@ struct Entity init_entity(int type);
 
 void damage(struct Entity* entity, struct Entity* entity2);
 
-void death(struct Entity* entity);
+void death(struct Entities* entities, struct Entity* entity);
 
 void fight(struct Entity* Player, struct Entity* ennemy);
 
