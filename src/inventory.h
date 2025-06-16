@@ -28,14 +28,15 @@ struct Inventory {
     struct Item inventory[MAX_SLOTS];
     int size;
     int weapon;
+    int selected;
 };
 
 
 
 
-void pick_up(struct Inventory* inv, struct Item item);
+void pick_up(struct Inventory* inv, int selected);
 
-void drop_item(struct Inventory* inv, struct Item item);
+void drop_item(struct Inventory* inv, int selected);
 
 void update_item_dura(struct Inventory* inv);
 

@@ -7,12 +7,12 @@ For armor management, see armor.c
 #include "inventory.h"
 
 
-void pick_up(struct Inventory* inv, struct Item item) {
+void pick_up(struct Inventory* inv, int selected) {
 
 }
 
 
-void drop_item(struct Inventory* inv, struct Item item) {
+void drop_item(struct Inventory* inv, int selected) {
 
 }
 
