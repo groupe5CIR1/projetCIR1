@@ -54,6 +54,7 @@ void death(struct Entity* winner, struct Entity* dead_guy_lol_sounds_like_a_skil
     struct Inventory* Inventory = dead_guy_lol_sounds_like_a_skill_issue->inventory->slots;
     for(int i=0; i < Inventory->size; i++){
         drop_item();
+        printf("caca");
     }
 }
 
