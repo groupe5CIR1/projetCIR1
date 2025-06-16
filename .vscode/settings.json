@@ -4,6 +4,7 @@
         "stdio.h": "c",
         "player.C": "cpp",
         "armor.h": "c",
-        "inventory.h": "c"
+        "inventory.h": "c",
+        "entityarray.h": "c"
     }
 }

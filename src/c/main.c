@@ -1,9 +1,8 @@
-#include "print_book.h"
-#include "../headers/inventory.h"
+/*
+Main logic for the game.
+*/
 
-float random(){
-    return rand() / (float)RAND_MAX;
-}
+#include "../headers/main.h"
 
 int main(void) {
     print_book();

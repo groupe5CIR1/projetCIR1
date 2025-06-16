@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+#include "../headers/entity.h"
+
 struct Entities {
     struct EntityArray* entityArray;
     struct LoadedEntities* loadedEntities;

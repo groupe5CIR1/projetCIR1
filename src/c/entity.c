@@ -4,9 +4,7 @@ For armor management, see armor.c
 For inventory management, see inventory.c
 */
 
-#include "../headers/entityArray.h"
-#include "../headers/entity.h"
-#include "../headers/inventory.h"
+#include "entity.h"
 
 struct Entity entity_init(int type){
     float health;

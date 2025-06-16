@@ -8,6 +8,8 @@
 
 #include "armor.h"
 #include "inventory.h"
+#include "entityArray.h"
+#include "inventory.h"
 
 #define MAX_SLOTS 6
 

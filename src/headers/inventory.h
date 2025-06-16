@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "../headers/itemArray.h"
+
 enum ITEM {
     POTION,
     WEAPON

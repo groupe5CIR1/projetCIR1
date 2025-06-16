@@ -1,11 +1,10 @@
 /*
-Manages inventories (for both players and ennemies), including item creation, picking up, dropping.
+Manages inventories (for both players and ennemies), including item creation, picking up, dropping, etc.
 For entity management, see entity.c
 For armor management, see armor.c
 */
 
 #include "../headers/inventory.h"
-#include "../headers/itemArray.h"
 
 
 

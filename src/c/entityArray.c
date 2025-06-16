@@ -1,5 +1,11 @@
+/*
+EntityArray is a dynamic array storing all the entities in the game (including the player, monsters and ennemies).
+Newly created entities should be added to this array, and dead entities should be removed from this array.
+Note that this array only stores entities, regardless of their loaded tag. See LoadedEntities array for more information on the loaded tag.
+*/
+
+
 #include "../headers/entityArray.h"
-#include "../headers/entity.h"
 
 struct EntityArray init_entity_array() {
     struct Entity* array = malloc(2*sizeof(struct Entity));
@@ -66,6 +72,12 @@ void free_entity_array(struct EntityArray* Arr) {
 }
 
 
+/*
+LoadedEntities is a dynamic array storing all the loaded entities, i.e. all the entities on one html page.
+Those entities are tagged with the boolean "loaded" (true = loaded, false = not loaded).
+Note that newly created entities should always be loaded, and leaving a page should unload all entities on that page and attempt to load new ones.
+The player is ofc not affected by page changes, and should always be loaded.
+*/
 
 struct LoadedEntities init_loaded_entity_array() {
     struct LoadedEntities* array = malloc(2*sizeof(struct Entity));

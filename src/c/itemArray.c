@@ -1,5 +1,6 @@
 /*
-Manages the list of the existing items in a dynamic array.
+Manages the list of all the existing items in a dynamic array.
+Note that this does not manage inventories, see "inventory.c" for more information.
 */
 
 #include "../headers/itemArray.h"
