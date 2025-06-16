@@ -6,14 +6,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-enum ITEM{
-    potion,
-    weapon
+enum ITEM {
+    POTION,
+    WEAPON
 };
 
 enum NAME {
     ARME_INCROYABLE_SA_GRANMERE,
-    DEUXIEME_ARME_INCROYABLE_SA_GRANMERE
+    DEUXIEME_ARME_INCROYABLE_SA_GRANMERE,
+    ARME_INCASSABLE_C_EST_TROP_BI1_SAMERE
 };
 
 
@@ -21,7 +22,7 @@ struct Item {
     int name;
     int type;
     float multiplier;
-    unsigned int durability;
+    float durability;
 };
 
 struct Inventory {
@@ -33,6 +34,7 @@ struct Inventory {
 
 
 
+struct Item create_item(int name, int type);
 
 void pick_up(struct Inventory* inv, struct Item* item);
 
@@ -40,4 +42,6 @@ void drop_item(struct Inventory* inv, struct Item* item);
 
 void update_item_dura(struct Inventory* inv);
 
-#endif 
+void remove_item(struct Inventory* inv, struct Item* item);
+
+#endif

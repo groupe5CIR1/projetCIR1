@@ -7,6 +7,32 @@ For armor management, see armor.c
 #include "inventory.h"
 
 
+
+struct Item create_item(int name, int type) {
+    float dura, multiplier;
+    if(type == WEAPON) {
+        switch (name) {
+        case ARME_INCROYABLE_SA_GRANMERE:
+            multiplier = 2;
+            dura = 30;
+            break;
+        case DEUXIEME_ARME_INCROYABLE_SA_GRANMERE:
+            multiplier = 5;
+            dura = 40;
+            break;
+        case ARME_INCASSABLE_C_EST_TROP_BI1_SAMERE:
+            multiplier = 8;
+            dura = -1;
+        default:
+            multiplier = 1;
+            dura = 20;
+            break;
+        }
+    }
+    return (struct Item) {.name = name, .type = type, .multiplier = multiplier, .durability = dura};
+}
+
+
 void pick_up(struct Inventory* inv, struct Item* item) {
 
 }
@@ -17,16 +43,14 @@ void drop_item(struct Inventory* inv, struct Item* item) {
 }
 
 void update_item_dura(struct Inventory* inv) {
-    if(!inv->weapon) return;
-<<<<<<< HEAD
-    inv->slots[inv->weapon].durability *= random();
-=======
-    float *dura = inv->inventory[inv->weapon].durability;
+    if(!inv->weapon ) return;
+    float *dura = &inv->slots[inv->weapon].durability;
+    if(*dura == -1) return;
     *dura -= 5 * random();
     if(*dura <= 0.0) {
-        break_item(inv->inventory[inv->weapon]);
+        remove_item(inv, &inv->slots[inv->weapon]);
+        //playsound 
     }
->>>>>>> 307416c565047cd7b8752d0c2863cfe3a816c0de
 }
 
 
