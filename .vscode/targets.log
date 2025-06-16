@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jun 16 08:59:20 2025
+# Make data base, printed on Mon Jun 16 14:29:24 2025
 
 # Variables
 
@@ -103,7 +103,7 @@ LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:
 # automatic
 +F = $(notdir $+)
 # environment
-WSL_INTEROP = /run/WSL/14_interop
+WSL_INTEROP = /run/WSL/14256_interop
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
@@ -123,7 +123,7 @@ _ = /home/isen/.vscode-server/bin/dfaf44141ea9deb3b4096f7cd6d24e00c147a4b1/node
 # environment
 XDG_RUNTIME_DIR = /mnt/wslg/runtime-dir
 # environment
-VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-15a05276-c931-41a9-92a4-725bda70e2fe.sock
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-065199db-4c8d-4b79-a12c-87bb84725725.sock
 # environment
 HOME = /home/isen
 # environment
@@ -143,7 +143,7 @@ WSL_DISTRO_NAME = Debian
 # environment
 VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # variable set hash-table stats:
-# Load=66/1024=6%, Rehash=0, Collisions=1/97=1%
+# Load=66/1024=6%, Rehash=0, Collisions=1/100=1%
 
 # Pattern-specific Variable Values
 
@@ -185,15 +185,34 @@ clean:
 # Not a target:
 src/main.c:
 #  Implicit rule search has been done.
-#  Last modified 2025-06-13 15:55:14.742868432
+#  Last modified 2025-06-16 10:39:57.00725301
 #  File has been updated.
 #  Successfully updated.
 
 src/main.o: src/main.c src/print_book.h
 #  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
 #  Last modified 2025-06-13 15:55:14.742868432
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := src/main.o
+# automatic
+# * := 
+# automatic
+# < := src/main.c
+# automatic
+# + := src/main.c src/print_book.h
+# automatic
+# % := 
+# automatic
+# ^ := src/main.c src/print_book.h
+# automatic
+# ? := src/main.c
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
 #  recipe to execute (from 'Makefile', line 9):
 	gcc -Wall -c src/main.c -o src/main.o
 
@@ -208,33 +227,41 @@ all: src/uwu
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/3=0%
 
 src/print_book.o: src/print_book.c src/print_book.h
 #  Implicit rule search has not been done.
-#  Last modified 2025-06-13 15:55:14.746868429
-#  File has been updated.
-#  Successfully updated.
+#  Modification time never checked.
+#  File has not been updated.
 #  recipe to execute (from 'Makefile', line 12):
 	gcc -Wall -c src/print_book.c -o src/print_book.o
 
 # Not a target:
 src/print_book.c:
-#  Implicit rule search has been done.
-#  Last modified 2025-06-13 15:55:14.746868429
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 src/uwu: src/main.o src/print_book.o
 #  Implicit rule search has not been done.
 #  Last modified 2025-06-13 15:55:14.746868429
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/3=0%
 #  recipe to execute (from 'Makefile', line 6):
 	gcc -Wall -o src/uwu $(objects)
 
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 # files hash-table stats:
-# Load=11/1024=1%, Rehash=0, Collisions=0/32=0%
+# Load=11/1024=1%, Rehash=0, Collisions=0/33=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
@@ -244,9 +271,9 @@ src/uwu: src/main.o src/print_book.o
 # strcache buffers: 1 (0) / strings = 21 / storage = 203 B / avg = 9 B
 # current buf: size = 8162 B / used = 203 B / count = 21 / avg = 9 B
 
-# strcache performance: lookups = 35 / hit rate = 40%
+# strcache performance: lookups = 36 / hit rate = 41%
 # hash-table stats:
-# Load=21/8192=0%, Rehash=0, Collisions=0/35=0%
-# Finished Make data base on Mon Jun 16 08:59:20 2025
+# Load=21/8192=0%, Rehash=0, Collisions=0/36=0%
+# Finished Make data base on Mon Jun 16 14:29:24 2025
 
  

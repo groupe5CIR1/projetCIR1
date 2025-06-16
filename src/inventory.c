@@ -36,16 +36,23 @@ struct Item create_item(struct ItemArray* Arr, int name, int type) {
     return (struct Item) item;
 }
 
+struct Inventory* init_slots() {
+    struct Item slots[MAX_SLOTS];
+    for(int i=0; i < MAX_SLOTS; i++) {
+        slots[i] = (struct Item){NULL};
+    }
+    struct Inventory inv = {.slots = slots, .size = -1, .weapon = -1, .selected = -1};
+    return (struct Inventory*) &inv;
+}
 
 void pick_up(struct Inventory* inv, struct Item* item) {
     if(!inv || !item) return;
-    if(inv->size >= 6 ){
+    if(inv->size >= 6){
         //demander de drop un item
     }
     inv->slots[inv->size] = *item;
     return;
 }
-
 
 void drop_item(struct Inventory* inv, struct Item* item) {
     if(!inv || !item) return;
@@ -75,7 +82,6 @@ void update_item_dura(struct ItemArray* Arr, struct Inventory* inv) {
         //playsound 
     }
 }
-
 
 void remove_item(struct ItemArray* Arr, struct Inventory* inv, struct Item* item) {
     drop_item(inv, item);

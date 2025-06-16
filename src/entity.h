@@ -11,7 +11,7 @@
 
 #define MAX_SLOTS 6
 
-enum Type{
+enum Type {
     PLAYER,
     MONSTER,
     ENNEMY,
@@ -19,10 +19,10 @@ enum Type{
 
 
 
-struct Inventory{
-struct Item* slots[MAX_SLOTS];
-int size;
-bool weapon;
+struct Inventory {
+    struct Item* slots[MAX_SLOTS];
+    int size;
+    bool weapon;
 };
 
 struct Entity {

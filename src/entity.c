@@ -11,8 +11,7 @@ For inventory management, see inventory.c
 struct Entity entity_init(int type){
     float health;
     float damage;
-    switch (type)
-    {
+    switch (type) {
     case PLAYER:
         health = 100.0;
         damage = 10.0;
@@ -26,7 +25,14 @@ struct Entity entity_init(int type){
         damage = 9.0;
         break;
     }
-    return (struct Entity) {.uid = NULL, .loaded = 1, .type = type , .health = health, .defaultDamage = NULL, .shield = 0, .armor = NULL, .inventory = NULL };
+    return (struct Entity)
+        {.uid = NULL,
+        .loaded = 1,
+        .type = type,
+        .health = health,
+        .defaultDamage = NULL,
+        .shield = 0, .armor = NULL,
+        .inventory = init_slots()};
 }
 
 void damage(struct Entity* attacker, struct Entity* defender){
