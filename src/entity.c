@@ -30,7 +30,6 @@ struct Entity entity_init(int type){
 }
 
 void damage(struct Entity* attacker, struct Entity* defender){
-    struct Item chosen_item1, chosen_item2;
     float item_multiplier = 1;
     struct Inventory* inv = attacker->inventory;
     if(inv->weapon) {
@@ -43,15 +42,15 @@ void damage(struct Entity* attacker, struct Entity* defender){
 void fight(struct Entity* player, struct Entity* ennemy){
     damage(player, ennemy);
     if(ennemy->health <= 0){
-        death();
+        death(&ennemy);
     }
     damage(ennemy, player);
     if(player->health <=0){
-        death();
+        death(&player);
     }
 }
 
-void death(struct Entity* dead_guy_lol_lmao_get_trolled){
+void death(struct Entity* dead_guy_lol_sounds_like_a_skill_issue){
 
 }
 
