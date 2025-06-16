@@ -1,5 +1,7 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/isen/C_WSL/Projet/projetCIR1'
-make: Nothing to be done for 'all'.
+gcc -Wall -c src/main.c -o src/main.o
+gcc -Wall -c src/print_book.c -o src/print_book.o
+gcc -Wall -o src/uwu src/main.o src/print_book.o
 make: Leaving directory '/home/isen/C_WSL/Projet/projetCIR1'
  

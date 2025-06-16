@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Jun 13 11:55:01 2025
+# Make data base, printed on Mon Jun 16 08:59:20 2025
 
 # Variables
 
@@ -15,7 +15,7 @@ LC_ALL = C
 # environment
 PULSE_SERVER = unix:/mnt/wslg/PulseServer
 # environment
-WSLENV = VSCODE_WSL_EXT_LOCATION/up:VSCODE_SERVER_TAR/up
+WSLENV = VSCODE_WSL_EXT_LOCATION/up
 # environment
 VSCODE_CWD = /mnt/c/Users/doorm/AppData/Local/Programs/Microsoft VS Code
 # default
@@ -48,8 +48,6 @@ MAKEFLAGS = pqrR
 CURDIR := /home/isen/C_WSL/Projet/projetCIR1
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
-# environment
-VSCODE_L10N_BUNDLE_LOCATION = 
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -59,7 +57,6 @@ MFLAGS = -pqrR
 # environment
 WSL2_GUI_APPS_ENABLED = 1
 # environment
- 
 WAYLAND_DISPLAY = wayland-0
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
@@ -100,15 +97,13 @@ MAKEFILES :=
 # environment
 NAME = Door
 # environment
-VSCODE_SERVER_TAR = /mnt/c/Users/doorm/vscode-remote-wsl/stable/dfaf44141ea9deb3b4096f7cd6d24e00c147a4b1/vscode-server-stable-linux-x64.tar.gz
-# environment
 HOSTTYPE = x86_64
 # environment
 LS_COLORS = rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.swp=00;90:*.tmp=00;90:*.dpkg-dist=00;90:*.dpkg-old=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:
 # automatic
 +F = $(notdir $+)
 # environment
-WSL_INTEROP = /run/WSL/9_interop
+WSL_INTEROP = /run/WSL/14_interop
 # 'override' directive
 GNUMAKEFLAGS := 
 # environment
@@ -120,7 +115,6 @@ VSCODE_WSL_EXT_LOCATION = /mnt/c/Users/doorm/.vscode/extensions/ms-vscode-remote
 # environment
 DISPLAY = :0
 # environment
- 
 USER = isen
 # default
 MAKE_VERSION := 4.3
@@ -129,7 +123,7 @@ _ = /home/isen/.vscode-server/bin/dfaf44141ea9deb3b4096f7cd6d24e00c147a4b1/node
 # environment
 XDG_RUNTIME_DIR = /mnt/wslg/runtime-dir
 # environment
-VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-5c7a731c-faa8-409f-bcca-aa55a711bdb1.sock
+VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-15a05276-c931-41a9-92a4-725bda70e2fe.sock
 # environment
 HOME = /home/isen
 # environment
@@ -149,7 +143,7 @@ WSL_DISTRO_NAME = Debian
 # environment
 VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # variable set hash-table stats:
-# Load=68/1024=7%, Rehash=0, Collisions=2/99=2%
+# Load=66/1024=6%, Rehash=0, Collisions=1/97=1%
 
 # Pattern-specific Variable Values
 
@@ -157,9 +151,9 @@ VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 
 # Directories
 
-# . (device 2096, inode 35089): 10 files, no impossibilities.
+# . (device 2096, inode 35089): 9 files, no impossibilities.
 
-# 10 files, no impossibilities in 1 directories.
+# 9 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -170,14 +164,14 @@ VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # Not a target:
 src/print_book.h:
 #  Implicit rule search has been done.
-#  Last modified 2025-06-13 11:15:57.491627599
+#  Last modified 2025-06-13 11:56:42.698358342
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2025-06-13 11:54:05.60644516
+#  Last modified 2025-06-13 14:32:11.085443164
 #  File has been updated.
 #  Successfully updated.
 
@@ -186,18 +180,18 @@ clean:
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 15):
-	rm -f $(objects) src/uwu
+	rm -f $(objects) src/uwu src/export/*.html
 
 # Not a target:
 src/main.c:
 #  Implicit rule search has been done.
-#  Last modified 2025-06-13 11:52:41.478484359
+#  Last modified 2025-06-13 15:55:14.742868432
 #  File has been updated.
 #  Successfully updated.
 
 src/main.o: src/main.c src/print_book.h
 #  Implicit rule search has not been done.
-#  Last modified 2025-06-13 11:54:31.318431536
+#  Last modified 2025-06-13 15:55:14.742868432
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 9):
@@ -218,9 +212,8 @@ all: src/uwu
 
 src/print_book.o: src/print_book.c src/print_book.h
 #  Implicit rule search has not been done.
-#  Last modified 2025-06-13 11:54:31.354431517
+#  Last modified 2025-06-13 15:55:14.746868429
 #  File has been updated.
- 
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 12):
 	gcc -Wall -c src/print_book.c -o src/print_book.o
@@ -228,13 +221,13 @@ src/print_book.o: src/print_book.c src/print_book.h
 # Not a target:
 src/print_book.c:
 #  Implicit rule search has been done.
-#  Last modified 2025-06-13 11:12:08.867745807
+#  Last modified 2025-06-13 15:55:14.746868429
 #  File has been updated.
 #  Successfully updated.
 
 src/uwu: src/main.o src/print_book.o
 #  Implicit rule search has not been done.
-#  Last modified 2025-06-13 11:54:31.442431469
+#  Last modified 2025-06-13 15:55:14.746868429
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 6):
@@ -248,12 +241,12 @@ src/uwu: src/main.o src/print_book.o
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 22 / storage = 210 B / avg = 9 B
-# current buf: size = 8162 B / used = 210 B / count = 22 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 21 / storage = 203 B / avg = 9 B
+# current buf: size = 8162 B / used = 203 B / count = 21 / avg = 9 B
 
-# strcache performance: lookups = 36 / hit rate = 38%
+# strcache performance: lookups = 35 / hit rate = 40%
 # hash-table stats:
-# Load=22/8192=0%, Rehash=0, Collisions=0/36=0%
-# Finished Make data base on Fri Jun 13 11:55:01 2025
+# Load=21/8192=0%, Rehash=0, Collisions=0/35=0%
+# Finished Make data base on Mon Jun 16 08:59:20 2025
 
  
