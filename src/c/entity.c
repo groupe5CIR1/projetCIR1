@@ -25,14 +25,15 @@ struct Entity entity_init(int type){
         damage = 9.0;
         break;
     }
-    return (struct Entity)
-        {.uid = NULL,
+    return (struct Entity) {
+        .uid = NULL,
         .loaded = 1,
         .type = type,
         .health = health,
         .defaultDamage = NULL,
         .shield = 0, .armor = NULL,
-        .inventory = init_slots()};
+        .inventory = init_slots()
+    };
 }
 
 void damage(struct Entity* attacker, struct Entity* defender){
