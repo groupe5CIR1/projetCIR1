@@ -1,6 +1,8 @@
 #ifndef INVENTORY
 #define INVENTORY
 
+#define MAX_SLOTS 6
+
 #include <stdio.h>
 #include <stdlib.h>
 

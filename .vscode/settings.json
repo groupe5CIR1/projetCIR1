@@ -2,6 +2,7 @@
     "files.associations": {
         "main.h": "c",
         "stdio.h": "c",
-        "player.C": "cpp"
+        "player.C": "cpp",
+        "armor.h": "c"
     }
 }

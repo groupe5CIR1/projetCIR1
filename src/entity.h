@@ -9,8 +9,6 @@
 #include "armor.h"
 #include "inventory.h"
 
-#define MAX_SLOTS 6
-
 enum Type{
     PLAYER,
     MONSTER,
