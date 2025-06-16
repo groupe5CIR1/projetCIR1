@@ -23,6 +23,7 @@ struct Item create_item(int name, int type) {
         case ARME_INCASSABLE_C_EST_TROP_BI1_SAMERE:
             multiplier = 8;
             dura = -1;
+            break;
         default:
             multiplier = 1;
             dura = 20;
