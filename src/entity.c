@@ -33,7 +33,7 @@ void damage(struct Entity* attacker, struct Entity* defender){
     float item_multiplier = 1;
     struct Inventory* inv = attacker->inventory;
     if(inv->weapon) {
-        item_multiplier *= inv->inventory[inv->weapon]->multiplier;
+        item_multiplier *= inv->slots[inv->weapon]->multiplier;
     }
     defender->health -= attacker->defaultDamage * item_multiplier;
     //ajouter armure
@@ -42,16 +42,19 @@ void damage(struct Entity* attacker, struct Entity* defender){
 void fight(struct Entity* player, struct Entity* ennemy){
     damage(player, ennemy);
     if(ennemy->health <= 0){
-        death(&ennemy);
+        death(&player, &ennemy);
     }
     damage(ennemy, player);
     if(player->health <=0){
-        death(&player);
+        death(&ennemy, &player);
     }
 }
 
-void death(struct Entity* dead_guy_lol_sounds_like_a_skill_issue){
-
+void death(struct Entity* winner, struct Entity* dead_guy_lol_sounds_like_a_skill_issue){
+    struct Inventory* Inventory = dead_guy_lol_sounds_like_a_skill_issue->inventory->slots;
+    for(int i=0; i < Inventory->size; i++){
+        drop_item();
+    }
 }
 
 

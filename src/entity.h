@@ -9,6 +9,8 @@
 #include "armor.h"
 #include "inventory.h"
 
+#define MAX_SLOTS 6
+
 enum Type{
     PLAYER,
     MONSTER,
@@ -16,6 +18,12 @@ enum Type{
 };
 
 
+
+struct Inventory{
+struct Item* slots[MAX_SLOTS];
+int size;
+bool weapon;
+};
 
 struct Entity {
     int uid;

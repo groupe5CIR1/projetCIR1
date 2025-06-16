@@ -18,5 +18,5 @@ void drop_item(struct Inventory* inv, struct Item item) {
 
 void update_item_dura(struct Inventory* inv) {
     if(!inv->weapon) return;
-    inv->inventory[inv->weapon].durability *= random();
+    inv->slots[inv->weapon].durability *= random();
 }
