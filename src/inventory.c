@@ -18,5 +18,12 @@ void drop_item(struct Inventory* inv, struct Item item) {
 
 void update_item_dura(struct Inventory* inv) {
     if(!inv->weapon) return;
-    inv->inventory[inv->weapon].durability *= random();
+    float *dura = inv->inventory[inv->weapon].durability;
+    *dura -= 5 * random();
+    if(*dura <= 0.0) {
+        break_item(inv->inventory[inv->weapon]);
+    }
 }
+
+
+
