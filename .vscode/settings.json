@@ -5,6 +5,7 @@
         "player.C": "cpp",
         "armor.h": "c",
         "inventory.h": "c",
-        "entityarray.h": "c"
+        "entityarray.h": "c",
+        "socket.h": "c"
     }
 }
