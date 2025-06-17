@@ -67,3 +67,5 @@ void write_after_balise(FILE* file, const char* text, const char* balise, int b_
     free(content);
     free(new_content);
 }
+
+
