@@ -73,8 +73,8 @@ int main(void) {
         slot = -1;
         item = -1;
         if (strstr(buffer, "\"button\":0")) {   //on page loading
-            printf("Nouveau chapitre (0)\n");
-            send_response(new_socket, "Nouveau chapitre (0)");
+            printf("NEW_CHAPTER (0)\n");
+            send_response(new_socket, "NEW_CHAPTER (0)");
             new_chapter = extract_chapter(buffer);
             if(chapter != new_chapter) {        //prevents reload exploits
                 btn = NEW_CHAPTER;
@@ -109,7 +109,7 @@ int main(void) {
             slot = extract_slot(buffer);
         }
         else {
-            printf("Commande inconnue");
+            printf("Commande inconnue\n");
             send_response(new_socket, "Commande inconnue");
         }
         btn_logic(&entities, player, &items, chapter, btn, slot, item);
