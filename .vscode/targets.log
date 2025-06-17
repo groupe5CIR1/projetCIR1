@@ -6,12 +6,16 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Jun 16 14:29:24 2025
+# Make data base, printed on Tue Jun 17 16:39:40 2025
 
 # Variables
 
+# makefile (from 'Makefile', line 11)
+OBJ = $(SRC:.c=.o)
 # environment
 LC_ALL = C
+# makefile (from 'Makefile', line 6)
+SRC = src/c/main.c src/c/print_book.c src/c/logic.c src/c/chapters.c src/c/display.c src/c/entity.c src/c/inventory.c src/c/armor.c src/c/entityArray.c src/c/itemArray.c
 # environment
 PULSE_SERVER = unix:/mnt/wslg/PulseServer
 # environment
@@ -48,6 +52,8 @@ MAKEFLAGS = pqrR
 CURDIR := /home/isen/C_WSL/Projet/projetCIR1
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# environment
+VSCODE_L10N_BUNDLE_LOCATION = 
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -78,8 +84,6 @@ MAKE_HOST := x86_64-pc-linux-gnu
 SHELL = /bin/sh
 # default
 MAKECMDGOALS := all
-# makefile (from 'Makefile', line 1)
-objects = src/main.o src/print_book.o
 # environment
 SHLVL = 0
 # environment
@@ -122,6 +126,8 @@ MAKE_VERSION := 4.3
 _ = /home/isen/.vscode-server/bin/dfaf44141ea9deb3b4096f7cd6d24e00c147a4b1/node
 # environment
 XDG_RUNTIME_DIR = /mnt/wslg/runtime-dir
+# makefile (from 'Makefile', line 3)
+CFLAGS = -Wall -Wextra -std=c99 -Iheaders
 # environment
 VSCODE_IPC_HOOK_CLI = /mnt/wslg/runtime-dir/vscode-ipc-065199db-4c8d-4b79-a12c-87bb84725725.sock
 # environment
@@ -136,14 +142,18 @@ TERM = xterm-256color
 <F = $(notdir $<)
 # default
 SUFFIXES := 
+# makefile (from 'Makefile', line 14)
+TARGET = server
 # environment
 WSL_DISTRO_NAME = Debian
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# makefile (from 'Makefile', line 2)
+CC = gcc
 # environment
 VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # variable set hash-table stats:
-# Load=66/1024=6%, Rehash=0, Collisions=1/100=1%
+# Load=71/1024=7%, Rehash=0, Collisions=4/111=4%
 
 # Pattern-specific Variable Values
 
@@ -152,69 +162,146 @@ VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # Directories
 
 # . (device 2096, inode 35089): 9 files, no impossibilities.
+# src/c (device 2096, inode 35315): 14 files, no impossibilities so far.
 
-# 9 files, no impossibilities in 1 directories.
+# 23 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
-# No implicit rules.
+%.o: %.c
+#  recipe to execute (from 'Makefile', line 23):
+	$(CC) $(CFLAGS) -c -o $@ $<
 
+# 1 implicit rules, 0 (0.0%) terminal.
 # Files
 
 # Not a target:
-src/print_book.h:
+src/c/display.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/c/chapters.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+src/c/main.o: src/c/main.c
 #  Implicit rule search has been done.
-#  Last modified 2025-06-13 11:56:42.698358342
+#  Implicit/static pattern stem: 'src/c/main'
+#  Last modified 2025-06-17 16:23:25.356783873
 #  File has been updated.
 #  Successfully updated.
+#  recipe to execute (from 'Makefile', line 23):
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+# Not a target:
+src/c/itemArray.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+src/c/logic.o: src/c/logic.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/c/logic'
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := src/c/logic.o
+# automatic
+# * := src/c/logic
+# automatic
+# < := src/c/logic.c
+# automatic
+# + := src/c/logic.c
+# automatic
+# % := 
+# automatic
+# ^ := src/c/logic.c
+# automatic
+# ? := src/c/logic.c
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/15=13%
+#  recipe to execute (from 'Makefile', line 23):
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+# Not a target:
+src/c/entityArray.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+src/c/print_book.o: src/c/print_book.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/c/print_book'
+#  Last modified 2025-06-17 16:23:25.356783873
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 23):
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2025-06-13 14:32:11.085443164
+ 
+#  Last modified 2025-06-17 16:39:15.932291581
 #  File has been updated.
 #  Successfully updated.
 
-clean:
+# Not a target:
+src/c/entity.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 15):
-	rm -f $(objects) src/uwu src/export/*.html
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 27):
+	rm -f $(OBJ) $(TARGET)
+
+server: src/c/main.o src/c/print_book.o src/c/logic.o src/c/chapters.o src/c/display.o src/c/entity.o src/c/inventory.o src/c/armor.o src/c/entityArray.o src/c/itemArray.o
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+#  recipe to execute (from 'Makefile', line 20):
+	$(CC) $(CFLAGS) -o $@ $^
 
 # Not a target:
-src/main.c:
+src/c/print_book.c:
 #  Implicit rule search has been done.
-#  Last modified 2025-06-16 10:39:57.00725301
+#  Last modified 2025-06-17 16:23:25.356783873
 #  File has been updated.
 #  Successfully updated.
 
-src/main.o: src/main.c src/print_book.h
-#  Implicit rule search has not been done.
-#  Implicit/static pattern stem: ''
-#  Last modified 2025-06-13 15:55:14.742868432
+# Not a target:
+src/c/logic.c:
+#  Implicit rule search has been done.
+#  Last modified 2025-06-17 15:59:37.189525993
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := src/main.o
-# automatic
-# * := 
-# automatic
-# < := src/main.c
-# automatic
-# + := src/main.c src/print_book.h
-# automatic
-# % := 
-# automatic
-# ^ := src/main.c src/print_book.h
-# automatic
-# ? := src/main.c
-# automatic
-# | := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=1/11=9%
-#  recipe to execute (from 'Makefile', line 9):
-	gcc -Wall -c src/main.c -o src/main.o
+#  Successfully updated.
+
+# Not a target:
+src/c/armor.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+src/c/main.c:
+#  Implicit rule search has been done.
+#  Last modified 2025-06-17 16:23:25.356783873
+#  File has been updated.
+#  Successfully updated.
 
 # Not a target:
 .DEFAULT:
@@ -222,58 +309,49 @@ src/main.o: src/main.c src/print_book.h
 #  Modification time never checked.
 #  File has not been updated.
 
-all: src/uwu
+all: server
+#  Phony target (prerequisite of .PHONY).
 #  Command line target.
-#  Implicit rule search has been done.
+#  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/3=0%
+# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
 
-src/print_book.o: src/print_book.c src/print_book.h
+run: server
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 31):
+	./$(TARGET)
+
+# Not a target:
+src/c/inventory.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 12):
-	gcc -Wall -c src/print_book.c -o src/print_book.o
 
-# Not a target:
-src/print_book.c:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-src/uwu: src/main.o src/print_book.o
-#  Implicit rule search has not been done.
-#  Last modified 2025-06-13 15:55:14.746868429
-#  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/3=0%
-#  recipe to execute (from 'Makefile', line 6):
-	gcc -Wall -o src/uwu $(objects)
-
-# Not a target:
-.SUFFIXES:
+.PHONY: all clean run
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=11/1024=1%, Rehash=0, Collisions=0/33=0%
+# Load=21/1024=2%, Rehash=0, Collisions=0/57=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 21 / storage = 203 B / avg = 9 B
-# current buf: size = 8162 B / used = 203 B / count = 21 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 49 / storage = 528 B / avg = 10 B
+# current buf: size = 8162 B / used = 528 B / count = 49 / avg = 10 B
 
-# strcache performance: lookups = 36 / hit rate = 41%
+# strcache performance: lookups = 69 / hit rate = 28%
 # hash-table stats:
-# Load=21/8192=0%, Rehash=0, Collisions=0/36=0%
-# Finished Make data base on Mon Jun 16 14:29:24 2025
+# Load=49/8192=1%, Rehash=0, Collisions=0/69=0%
+# Finished Make data base on Tue Jun 17 16:39:40 2025
 
  
