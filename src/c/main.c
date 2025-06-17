@@ -78,6 +78,19 @@ int main(void) {
 }
 
 
+void send_response(int socket, const char *message) {
+    char response[1024];
+    snprintf(response, sizeof(response), 
+        "HTTP/1.1 200 OK\r\n"
+        "Access-Control-Allow-Origin: *\r\n"
+        "Access-Control-Allow-Methods: POST, GET, OPTIONS\r\n"
+        "Access-Control-Allow-Headers: Content-Type\r\n"
+        "Content-Type: text/plain\r\n"
+        "Content-Length: %zu\r\n"
+        "\r\n"
+        "%s", strlen(message), message);
+    write(socket, response, strlen(response));
+}
 
 
 float random() {
