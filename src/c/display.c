@@ -14,12 +14,11 @@ See "main.c" for more information.
 
 void get_text(FILE* file, char* balise, int b_index) {
 
-
 }
 
 
-void write_after_balise(FILE* file, const char* text, const char* balise, int b_index) { //ending balise only ex:</div> else risk of writing inside the content of a already existing balise
-    // Lire tout le fichier en mémoire
+void write_after_balise(FILE* file,  char* text, char* balise, int b_index) { //ending balise only ex:</div> else risk of writing inside the content of a already existing balise
+    // Lit tout le fichier en mémoire
     fseek(file, 0, SEEK_END);
     long size = ftell(file);
     rewind(file);
@@ -28,7 +27,7 @@ void write_after_balise(FILE* file, const char* text, const char* balise, int b_
     fread(content, 1, size, file);
     content[size] = '\0';
 
-    // Chercher la b_index-ième occurrence de la balise
+    // Cherche la b_index-ième occurrence de la balise
     int count = 0;
     char* pos = content;
     char* insert_point = NULL;
@@ -48,7 +47,7 @@ void write_after_balise(FILE* file, const char* text, const char* balise, int b_
         return;
     }
 
-    // Construire le nouveau contenu
+    // Construit le nouveau contenu
     size_t before_len = insert_point - content;
     size_t new_size = size + strlen(text);
     char* new_content = malloc(new_size + 1);
@@ -58,14 +57,20 @@ void write_after_balise(FILE* file, const char* text, const char* balise, int b_
     strcat(new_content, text);
     strcat(new_content, insert_point);
 
-    // Réécrire dans le fichier
+    // Réécrit dans le fichier
     freopen(NULL, "w", file); // rouvre le même fichier en écriture (efface contenu)
     fwrite(new_content, 1, strlen(new_content), file);
-    fflush(file); // s’assurer que tout est bien écrit
+    fflush(file); // Assure que tout est bien écrit
 
-    // Libération mémoire
     free(content);
     free(new_content);
 }
 
 
+void update_fight_image(FILE* file, char* link) {
+    
+}
+
+void update_button(FILE* file, int btn) {
+
+}

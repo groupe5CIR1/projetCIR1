@@ -10,7 +10,7 @@
 struct Armor {
     char* name;
     int resistance;
-    unsigned int durability;
+    float durability;
 };
 
 void equip(struct Entity* player, struct Armor* armor);

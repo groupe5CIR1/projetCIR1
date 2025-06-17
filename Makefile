@@ -1,15 +1,34 @@
-objects = src/c/main.o src/c/print_book.o
+# Compiler and flags
+CC = gcc
+CFLAGS = -Wall -Wextra -std=c99 -Iheaders
 
-all: src/uwu
+# Source files
+SRC = src/c/main.c src/c/print_book.c src/c/logic.c src/c/chapters.c \
+      src/c/display.c src/c/entity.c src/c/inventory.c src/c/armor.c \
+      src/c/entityArray.c src/c/itemArray.c
 
-src/uwu: $(objects)
-	gcc -Wall -o src/uwu $(objects)
+# Object files
+OBJ = $(SRC:.c=.o)
 
-src/c/main.o: src/c/main.c src/headers/print_book.h
-	gcc -Wall -c src/c/main.c -o src/c/main.o
+# Executable name
+TARGET = server
 
-src/c/print_book.o: src/c/print_book.c src/headers/print_book.h
-	gcc -Wall -c src/c/print_book.c -o src/c/print_book.o
+# Default target
+all: $(TARGET)
 
+$(TARGET): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+# Clean target
 clean:
-	rm -f $(objects) src/uwu src/export/*.html
+	rm -f $(OBJ) $(TARGET)
+
+# Run target
+run: $(TARGET)
+	./$(TARGET)
+
+# Phony targets
+.PHONY: all clean run

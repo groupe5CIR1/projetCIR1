@@ -5,6 +5,7 @@ For inventory management, see inventory.c
 */
 
 #include "entity.h"
+#include "main.h"
 
 struct Entity* create_entity(struct Entities* entities, int type){
     float health;
@@ -62,7 +63,7 @@ void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* def
     }
     if (def_armor) {
         armor_reduction = def_armor->resistance;
-        def_armor->durability -= 5 * random();  //update_armor_dura à faire
+        def_armor->durability -= 5 * (float)randomizer();  //update_armor_dura à faire
     }
     defender->health -= attacker->defaultDamage * item_multiplier * armor_reduction;
 }
