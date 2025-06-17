@@ -1,13 +1,13 @@
-**.o
+**/*.o
 
-**.exe
+**/*.exe
 server
 
-**.html
+**/*.html
 
-**.txt
-**.css
+**/*.txt
+**/*.css
 
-**.png
+**/*.png
 
 .vscode/
