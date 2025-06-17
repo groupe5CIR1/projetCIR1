@@ -9,7 +9,7 @@ For armor management, see armor.c
 
 
 
-struct Item create_item(struct ItemArray* Arr, int name, int type) {
+struct Item create_item(struct ItemArray* items, int name, int type) {
     float dura, multiplier;
     if(type == WEAPON) {
         switch (name) {
@@ -32,7 +32,7 @@ struct Item create_item(struct ItemArray* Arr, int name, int type) {
         }
     }
     struct Item item = {.name = name, .type = type, .multiplier = multiplier, .durability = dura, .loaded = true, .is_in_inventory = false};
-    add_item_array(Arr, &item);
+    add_item_array(items, &item);
     return (struct Item) item;
 }
 
@@ -79,19 +79,24 @@ void drop_item(struct Inventory* inv, struct Item* item) {
     }
 }
 
-void update_item_dura(struct ItemArray* Arr, struct Inventory* inv) {
+void update_item_dura(struct ItemArray* items, struct Inventory* inv) {
     if(!inv->weapon ) return;
     float *dura = &inv->slots[inv->weapon].durability;
     if(*dura == -1) return;
     *dura -= 5 * randomizer();
     if(*dura <= 0.0) {
-        remove_item(Arr, inv, &inv->slots[inv->weapon]);
+        remove_item(items, inv, &inv->slots[inv->weapon]);
         //playsound 
     }
 }
 
-void remove_item(struct ItemArray* Arr, struct Inventory* inv, struct Item* item) {
+void remove_item(struct ItemArray* items, struct Inventory* inv, struct Item* item) {
     drop_item(inv, item);
-    remove_item_array(Arr, item);
+    remove_item_array(items, item);
 }
 
+void free_inventory(struct ItemArray* items, struct Inventory* inv) {
+    for (int i=0; i < inv->size; i++) {
+        remove_item_array(items, &inv->slots[i]);
+    }
+}

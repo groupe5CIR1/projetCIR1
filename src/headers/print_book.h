@@ -12,6 +12,8 @@
 void print_book();
 FILE* create_file(char* filename);
 void init_file(FILE* file, char* id);
-void end_file(FILE* file);
+void add_game_display_file(FILE* file, char* id);
 void print_line(FILE *file, char* line);
+void add_js_file(FILE* file, char* id);
+void end_file(FILE* file);
 #endif

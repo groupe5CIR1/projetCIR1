@@ -16,12 +16,12 @@ struct EntityArray {
     int capacity;
 };
 
-struct EntityArray init_entity_array();
+struct EntityArray* init_entity_array();
 void add_entity_array(struct EntityArray* array, struct Entity* entity);
-void free_entity(struct Entity* entity);
-void remove_entity_array(struct EntityArray* array, int uid);
+void free_entity(struct ItemArray* items, struct Entity* entity);
+void remove_entity_array(struct ItemArray* items, struct EntityArray* Arr, int uid);
 struct Entity* get_entity_array(struct EntityArray* array, int uid);
-void free_entity_array(struct EntityArray* array);
+void free_entity_array(struct ItemArray* items, struct EntityArray* Arr);
 
 
 struct LoadedEntities {
@@ -30,8 +30,9 @@ struct LoadedEntities {
     int capacity;
 };
 
-struct LoadedEntities init_loaded_entity_array();
+struct LoadedEntities* init_loaded_entity_array();
 void load_entity(struct LoadedEntities* array, struct Entity* entity);
 void unload_entity(struct LoadedEntities* array, int uid);
+void free_loaded_entities(struct ItemArray* items, struct LoadedEntities* Arr);
 
 #endif

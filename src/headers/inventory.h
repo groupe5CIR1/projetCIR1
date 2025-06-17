@@ -51,4 +51,6 @@ void update_item_dura(struct ItemArray* Arr, struct Inventory* inv);
 
 void remove_item(struct ItemArray* Arr, struct Inventory* inv, struct Item* item);
 
+void free_inventory(struct ItemArray* items, struct Inventory* inv);
+
 #endif

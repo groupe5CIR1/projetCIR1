@@ -38,7 +38,7 @@ int get_new_uid(struct EntityArray* Arr);
 
 void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* defender);
 
-void death(struct Entities* entities, struct Entity* entity);
+void death(struct ItemArray* items, struct Entities* entities, struct Entity* entity);
 
 void fight(struct ItemArray* items, struct Entities* entities, struct Entity* player, struct Entity* ennemy);
 

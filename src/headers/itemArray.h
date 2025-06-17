@@ -13,9 +13,9 @@ struct ItemArray {
 };
 
 struct ItemArray init_item_array();
-void add_item_array(struct ItemArray* array, struct Item* item);
-void remove_item_array(struct ItemArray* Arr, struct Item* item);
-void free_item_array(struct ItemArray* Arr);
+void add_item_array(struct ItemArray* items, struct Item* item);
+void remove_item_array(struct ItemArray* items, struct Item* item);
+void free_item_array(struct ItemArray* items);
 
 
 #endif

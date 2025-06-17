@@ -42,8 +42,8 @@ int main(void) {
     printf("Serveur en écoute sur le port %d...\n", PORT);
 
     struct Entities entities;
-    *entities.entityArray = init_entity_array();
-    *entities.loadedEntities = init_loaded_entity_array();
+    entities.entityArray = init_entity_array();
+    entities.loadedEntities = init_loaded_entity_array();
 
     struct ItemArray items = init_item_array();
 
@@ -119,6 +119,10 @@ int main(void) {
     }
     
     close(server_fd);
+    free_loaded_entities(&items, entities.loadedEntities);
+    free_entity_array(&items, entities.entityArray);
+    free(&entities);
+    free_item_array(&items);
     return 0;
 }
 

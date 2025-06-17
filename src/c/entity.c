@@ -57,7 +57,7 @@ int get_new_uid(struct EntityArray* Arr) {
     return max_uid + 1;
 }
 
-void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* defender){
+void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* defender) {
     float item_multiplier = 1;
     float armor_reduction = 1;
     struct Inventory* att_inv = attacker->inventory;
@@ -74,25 +74,25 @@ void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* def
     defender->health -= attacker->defaultDamage * item_multiplier * armor_reduction;
 }
 
-void fight(struct ItemArray* items, struct Entities* entities, struct Entity* player, struct Entity* ennemy){
+void fight(struct ItemArray* items, struct Entities* entities, struct Entity* player, struct Entity* ennemy) {
     damage(items, player, ennemy);
     if(ennemy->health <= 0){
-        death(entities, ennemy);
+        death(items, entities, ennemy);
     }
     sleep(0.1);
     damage(items, ennemy, player);
     if(player->health <=0){
-        death(entities,player);
+        death(items, entities, player);
     }
 }
  
-void death(struct Entities* entities, struct Entity* dead_guy_lol_sounds_like_a_skill_issue){
+void death(struct ItemArray* items, struct Entities* entities, struct Entity* dead_guy_lol_sounds_like_a_skill_issue) {
     struct Inventory* inv = dead_guy_lol_sounds_like_a_skill_issue->inventory;
     for(int i=0; i < inv->size; i++){
         drop_item(dead_guy_lol_sounds_like_a_skill_issue->inventory, &inv->slots[i]);
     }
     unload_entity(entities->loadedEntities, dead_guy_lol_sounds_like_a_skill_issue->uid);
-    remove_entity_array(entities->entityArray, dead_guy_lol_sounds_like_a_skill_issue->uid);
+    remove_entity_array(items, entities->entityArray, dead_guy_lol_sounds_like_a_skill_issue->uid);
 }
 
 

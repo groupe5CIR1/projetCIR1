@@ -14,44 +14,44 @@ struct ItemArray init_item_array() {
     return (struct ItemArray) {array, 0, 2};
 }
 
-void add_item_array(struct ItemArray* Arr, struct Item* item) {
-    if(Arr->size >= Arr->capacity) {
-        int new_capacity = 2*Arr->capacity;
+void add_item_array(struct ItemArray* items, struct Item* item) {
+    if(items->size >= items->capacity) {
+        int new_capacity = 2*items->capacity;
         struct Item* newItemArr = malloc(new_capacity*sizeof(struct Item));
         if(newItemArr == NULL) {
             perror("Out of Memory error : could not allocate entity array for a resize\n");
             exit(1);
         }
-        for(int i=0; i < Arr->size; i++) {
-            newItemArr[i] = Arr->itemArray[i];
+        for(int i=0; i < items->size; i++) {
+            newItemArr[i] = items->itemArray[i];
         }
-        free(Arr->itemArray);
-        Arr->itemArray = newItemArr;
-        Arr->capacity = new_capacity;
+        free(items->itemArray);
+        items->itemArray = newItemArr;
+        items->capacity = new_capacity;
     }
-    Arr->itemArray[Arr->size] = *item;
-    Arr->size++;
+    items->itemArray[items->size] = *item;
+    items->size++;
 }
 
-void remove_item_array(struct ItemArray* Arr, struct Item* item) {
-    if (Arr == NULL || Arr->size == 0) return;
-    for (int i=0; i < Arr->size; i++) {
-        if (&Arr->itemArray[i] == item) {
-            for (int j=i; j < Arr->size - 1; j++) {
-                Arr->itemArray[j] = Arr->itemArray[j+1];
-                free(&Arr->itemArray[i]);
+void remove_item_array(struct ItemArray* items, struct Item* item) {
+    if (items == NULL || items->size == 0) return;
+    for (int i=0; i < items->size; i++) {
+        if (&items->itemArray[i] == item) {
+            for (int j=i; j < items->size - 1; j++) {
+                items->itemArray[j] = items->itemArray[j+1];
+                free(&items->itemArray[i]);
             }
-            Arr->size--;
+            items->size--;
             return;
         }
     }
 }
 
-void free_item_array(struct ItemArray* Arr) {
-    if (Arr == NULL) return;
-    for (int i=0; i < Arr->size; i++) {
-        free(&Arr->itemArray[i]);
+void free_item_array(struct ItemArray* items) {
+    if (items == NULL) return;
+    for (int i=0; i < items->size; i++) {
+        free(&items->itemArray[i]);
     }
-    free(Arr->itemArray);
+    free(items->itemArray);
 }
 

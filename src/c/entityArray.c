@@ -7,13 +7,21 @@ Note that this array only stores entities, regardless of their loaded tag. See L
 
 #include "../headers/entityArray.h"
 
-struct EntityArray init_entity_array() {
-    struct Entity* array = malloc(2*sizeof(struct Entity));
-    if(array == NULL) {
-        perror("Out of Memory error : failed to allocate entity array");
+struct EntityArray* init_entity_array() {
+    struct EntityArray* ntt_arr = malloc(sizeof(struct EntityArray));
+    if(ntt_arr == NULL) {
+        perror("Out of Memory error : failed to allocate entity array struct");
         exit(1);
     }
-    return (struct EntityArray) {array, 0, 2};
+    ntt_arr->entity_array = malloc(2*sizeof(struct Entity));
+    if(ntt_arr->entity_array == NULL) {
+        perror("Out of Memory error : failed to allocate entity array");
+        free(ntt_arr);
+        exit(1);
+    }
+    ntt_arr->size = 0;
+    ntt_arr->capacity = 2;
+    return (struct EntityArray*) ntt_arr;
 }
 
 void add_entity_array(struct EntityArray* Arr, struct Entity* entity) {
@@ -44,31 +52,41 @@ struct Entity* get_entity_array(struct EntityArray* Arr, int uid) {
     return NULL;
 }
 
-void free_entity(struct Entity* entity) {
+void free_entity(struct ItemArray* items, struct Entity* entity) {
     if (entity == NULL) return;
-    //free armor & inventory
+    if (entity->armor != NULL) free_armor(entity->armor);  //à faire
+    if (entity->inventory != NULL) free_inventory(items, entity->inventory);
 }
 
-void remove_entity_array(struct EntityArray* Arr, int uid) {
+void remove_entity_array(struct ItemArray* items, struct EntityArray* Arr, int uid) {
     if (Arr == NULL || Arr->size == 0) return;
     for (int i=0; i < Arr->size; i++) {
         if (Arr->entity_array[i].uid == uid) {
-            for (int j=i; j < Arr->size - 1; j++) {
-                Arr->entity_array[j] = Arr->entity_array[j+1];
-                free_entity(&Arr->entity_array[i]);
+            free_entity(items, &Arr->entity_array[i]);
+            for (int j = i; j < Arr->size - 1; j++) {
+                Arr->entity_array[j] = Arr->entity_array[j + 1];
             }
+            memset(&Arr->entity_array[Arr->size - 1], 0, sizeof(struct Entity));    //clear last element (now duplicate)
             Arr->size--;
             return;
         }
     }
 }
 
-void free_entity_array(struct EntityArray* Arr) {
-    if (Arr->entity_array == NULL) return;
-    for (int i=0; i < Arr->size; i++) {
-        free_entity(&Arr->entity_array[i]);
+void free_entity_array(struct ItemArray* items, struct EntityArray* Arr) {
+    if (Arr == NULL) return;
+    if (Arr->entity_array != NULL) {
+        for (int i=0; i < Arr->size; i++) {
+            if (Arr->entity_array[i].inventory != NULL) {
+                free_inventory(items, Arr->entity_array[i].inventory);
+            }
+            if (Arr->entity_array[i].armor != NULL) {
+                free_armor(Arr->entity_array[i].armor);     //à faire
+            }
+        }
+        free(Arr->entity_array);
     }
-    free(Arr->entity_array);
+    free(Arr);
 }
 
 
@@ -79,13 +97,21 @@ Note that newly created entities should always be loaded, and leaving a page sho
 The player is ofc not affected by page changes, and should always be loaded.
 */
 
-struct LoadedEntities init_loaded_entity_array() {
-    struct Entity* array = malloc(2*sizeof(struct Entity));
-    if(array == NULL) {
-        perror("Out of Memory error : failed to allocate entity array");
+struct LoadedEntities* init_loaded_entity_array() {
+    struct LoadedEntities* loaded_ntts = malloc(sizeof(struct LoadedEntities));
+    if(loaded_ntts == NULL) {
+        perror("Out of Memory error : failed to allocate loaded entity array struct");
         exit(1);
     }
-    return (struct LoadedEntities) {array, 0, 2};
+    loaded_ntts->loaded_entities = malloc(2*sizeof(struct Entity));
+    if(loaded_ntts->loaded_entities == NULL) {
+        perror("Out of Memory error : failed to allocate entity array");
+        free(loaded_ntts);
+        exit(1);
+    }
+    loaded_ntts->size = 0;
+    loaded_ntts->capacity = 2;
+    return (struct LoadedEntities*) loaded_ntts;
 }
 
 void load_entity(struct LoadedEntities* Arr, struct Entity* entity) {
@@ -120,5 +146,21 @@ void unload_entity(struct LoadedEntities* Arr, int uid) {
             return;
         }
     }
+}
+
+void free_loaded_entities(struct ItemArray* items, struct LoadedEntities* Arr) {
+    if (Arr == NULL) return;
+    if (Arr->loaded_entities != NULL) {
+        for (int i=0; i < Arr->size; i++) {
+            if (Arr->loaded_entities[i].inventory != NULL) {
+                free_inventory(items, Arr->loaded_entities[i].inventory);
+            }
+            if (Arr->loaded_entities[i].armor != NULL) {
+                free_armor(Arr->loaded_entities[i].armor);     //à faire
+            }
+        }
+        free(Arr->loaded_entities);
+    }
+    free(Arr);
 }
 

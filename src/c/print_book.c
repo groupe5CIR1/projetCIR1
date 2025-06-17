@@ -10,21 +10,29 @@ void print_book() {
     struct stat st = {0};
     if(stat("src/export", &st) == -1) mkdir("src/export", 0700);
     char line[LINE_SIZE];
+    char id[128], title[256];
     while(fgets(line, sizeof(line), f)) {
         if (strstr(line, "<chapter") != NULL) {
-            if(file != NULL) end_file(file);
-            char id[128], title[256];
+            if (file) {
+                add_game_display_file(file, id);
+                add_js_file(file, id);
+                end_file(file);
+            }
             sscanf(line, "<chapter id=\"%[^\"]\">%[^<]", id, title);
             file = create_file(id);
         }  
-        print_line(file, line);
+        if (file) print_line(file, line);
     }
-    if(file) end_file(file);
+    if (file) {
+        add_game_display_file(file, id);
+        add_js_file(file, id);
+        end_file(file);
+    }
     fclose(f);
 }
 
 
-FILE* create_file(char* id){    
+FILE* create_file(char* id) {    
     char filename[256];
     snprintf(filename, sizeof(filename), "src/export/%s.html", id);
     FILE *file = fopen(filename, "w");
@@ -40,34 +48,39 @@ void init_file(FILE* file, char* id) {
     char* html_init =
         "<!DOCTYPE html>\n"
         "<html lang=\"fr\">\n"
-            "<head>\n"
-            "<link rel=\"stylesheet\" href=\"../common.css\">"
-            "<meta charset=\"utf-8\">\n"
-            "<title> Chapitre %s </title>\n"
+        "   <head>\n"
+        "       <link rel=\"stylesheet\" href=\"../common.css\">\n"
+        "       <meta charset=\"utf-8\">\n"
+        "   <title> Chapitre %s </title>\n"
         "</head>\n"
         "<body>\n"
         "<div id =\"texte\">";
     fprintf(file, html_init, id);   
 }
 
-void end_file(FILE* file) {
+void add_game_display_file(FILE* file, char* id) {
+    int chapter = atoi(id);
     fprintf(file,
         "</div>\n"
         "<div id=\"combat_container\">\n"
-            "<div id =\"box_fight\">\n"
-                "<img src=\"../chevalier.png\" alt=\"Chevalier\" id=\"chevalier\">\n"
-                "<img src=\"../ennemy.png\"alt =\"ennemy\"id =\"ennemy\">\n"
-                "<img src=\"../monster.png\" alt=\"monster\" id=\"monster\">\n"
-            "</div>\n"
-            "<div id=\"box_inventory\">\n"
-                "<h1>INVENTAIRE</h1> <br>\n"
-                "<img src=\"../inventory.png\" alt=\"inventaire\" id=\"inventaire\">\n"
-            "</div>\n"
+        "    <div id=\"box_fight\">\n"
+        "        <img src=\"../chevalier.png\" alt=\"Chevalier\" id=\"chevalier\">\n"
+        "        <img src=\"../ennemy.png\"alt =\"ennemy\"id =\"ennemy\">\n"
+        "        <img src=\"../monster.png\" alt=\"monster\" id=\"monster\">\n"
+        "    </div>\n"
+        "    <div id=\"control_buttons\">\n"
+        "        <button id=\"FIGHT\" onclick=\"sendButton(1, %d, -1)\">Fight</button>\n"
+        "        <button id=\"PICKUP\" onclick=\"sendButton(2, %d, -1)\">Pick Up</button>\n"
+        "        <button id=\"DROP\" onclick=\"sendButton(3, %d, -1)\">Drop</button>\n"
+        "        <button id=\"USE\" onclick=\"sendButton(4, %d, -1)\">Use</button>\n"
+        "    </div>\n"
+        "    <div id=\"box_inventory\">\n"
+        "        <h1>INVENTAIRE</h1> <br>\n"
+        "        <img src=\"../inventory.png\" alt=\"inventaire\" id=\"inventaire\">\n"
+        "    </div>\n"
         "</div>\n"
-        "</body>\n"
-        "</html>\n"
+        , chapter, chapter, chapter, chapter
     );
-    fclose(file);
 }
 
 void print_line(FILE* file, char* line) {
@@ -85,5 +98,40 @@ void print_line(FILE* file, char* line) {
         fprintf(file, "<a href=\"%s.html\">Chapitre %s</a>", id, id);
     }
     fprintf(file, "</%s>\n", balise);
+}
+
+void add_js_file(FILE* file, char* id) {
+    int chapter = atoi(id);
+    fprintf(file,
+        "<script>\n"
+        "    async function sendButton(btnNum, chapter, slot) {\n"
+        "        try {\n"
+        "            const response = await fetch('http://localhost:8080', {\n"
+        "                method: 'POST',\n"
+        "                headers: {'Content-Type': 'application/json'},\n"
+        "                body: JSON.stringify({button: btnNum, chapter: chapter, slot: slot}),\n"
+        "            mode: 'cors'\n"
+        "            });\n"
+        "            const result = await response.text();\n"
+        "            console.log(\"Réponse:\", result);\n"
+        "            if (result.includes(\"REFRESH\")) {location.reload();}\n"
+        "        } catch (error) {\n"
+        "            console.error(\"Erreur:\", error);\n"
+        "        }\n"
+        "    }\n"
+        "    document.addEventListener('DOMContentLoaded', () => {\n"
+        "        sendButton(0, %d, -1);\n"
+        "    })\n"
+        "</script>\n"
+        , chapter
+    );
+}
+
+void end_file(FILE* file) {
+    fprintf(file, 
+        "</body>\n"
+        "</html>\n"
+    );
+    fclose(file);
 }
 
