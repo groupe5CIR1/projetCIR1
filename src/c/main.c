@@ -76,7 +76,7 @@ int main(void) {
             printf("NEW_CHAPTER (0)\n");
             send_response(new_socket, "NEW_CHAPTER (0)");
             new_chapter = extract_chapter(buffer);
-            if(chapter != new_chapter) {        //prevents reload exploits
+            if(chapter < new_chapter) {        //prevents reload exploits
                 btn = NEW_CHAPTER;
                 chapter = new_chapter;
             }
