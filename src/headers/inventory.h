@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include "../headers/itemArray.h"
 
@@ -25,6 +26,8 @@ struct Item {
     int type;
     float multiplier;
     float durability;
+    bool loaded;
+    bool is_in_inventory;
 };
 
 struct Inventory {

@@ -39,7 +39,16 @@ int main(void) {
     }
     
     printf("Serveur en écoute sur le port %d...\n", PORT);
+
+    struct Entities entities;
+    *entities.entityArray = init_entity_array();
+    *entities.loadedEntities = init_loaded_entity_array();
+
+    struct Entity* player = create_entity(&entities, PLAYER);
+
+    struct ItemArray items = init_item_array();
     
+    int chapter, btn, new_chapter, slot, item;
     while(1) {
         if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen)) < 0) {
             perror("accept");
@@ -59,15 +68,50 @@ int main(void) {
             continue;
         }
         
-        if (strstr(buffer, "\"button\":1")) {
-            printf("Bouton 1 pressé\n");
-            send_response(new_socket, "Bouton 1 reçu");
-        } else if (strstr(buffer, "\"button\":2")) {
-            printf("Bouton 2 pressé\n");
-            send_response(new_socket, "Bouton 2 reçu");
-        } else {
+        btn = -1;
+        slot = -1;
+        item = -1;
+        if (strstr(buffer, "\"button\":0")) {   //on page loading
+            printf("Nouveau chapitre (0)\n");
+            send_response(new_socket, "Nouveau chapitre (0)");
+            new_chapter = extract_chapter(buffer);
+            if(chapter != new_chapter) {        //prevents reload exploits
+                btn = NEW_CHAPTER;
+                chapter = new_chapter;
+            }
+        }
+        else if (strstr(buffer, "\"button\":1")) {
+            printf("Bouton FIGHT pressé (1)\n");
+            send_response(new_socket, "Bouton FIGHT reçu (1)");
+            btn = FIGHT;
+        }
+        else if (strstr(buffer, "\"button\":2")) {
+            printf("Bouton PICK_UP pressé (2)\n");
+            send_response(new_socket, "Bouton PICK_UP reçu (2)");
+            btn = PICK_UP;
+            item = extract_item(buffer);
+        }
+        else if (strstr(buffer, "\"button\":3")) {
+            printf("Bouton DROP pressé (3)\n");
+            send_response(new_socket, "Bouton DROP reçu (3)");
+            btn = DROP;
+        }
+        else if (strstr(buffer, "\"button\":4")) {
+            printf("Bouton USE pressé (4)\n");
+            send_response(new_socket, "Bouton USE reçu (4)");
+            btn = USE;
+        }
+        else if (strstr(buffer, "\"button\":5")) {
+            printf("Bouton SLOT pressé (5)\n");
+            send_response(new_socket, "Bouton SLOT reçu (5)");
+            btn = SLOT;
+            slot = extract_slot(buffer);
+        }
+        else {
+            printf("Commande inconnue");
             send_response(new_socket, "Commande inconnue");
         }
+        btn_logic(&entities, player, &items, chapter, btn, slot, item);
         
         close(new_socket);
         memset(buffer, 0, 1024);
@@ -92,6 +136,30 @@ void send_response(int socket, const char *message) {
     write(socket, response, strlen(response));
 }
 
+
+int extract_chapter(char *buffer) {
+    const char *chapter_str = strstr(buffer, "\"chapter\":");
+    if (chapter_str) {
+        return atoi(chapter_str + 10); // "\"chapter\":"  = 10 char
+    }
+    return -1;
+}
+
+int extract_slot(char *buffer) {
+    const char *slot_str = strstr(buffer, "\"slot\":");
+    if (slot_str) {
+        return atoi(slot_str + 6); // "\"slot\":"  = 6 char
+    }
+    return -1;
+}
+
+int extract_item(char *buffer) {
+    const char *item_str = strstr(buffer, "\"item\":");
+    if (item_str) {
+        return atoi(item_str + 6); // "\"item\":"  = 6 char
+    }
+    return -1;
+}
 
 float random() {
     return rand() / (float)RAND_MAX;

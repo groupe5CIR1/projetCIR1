@@ -30,7 +30,7 @@ struct Item create_item(struct ItemArray* Arr, int name, int type) {
             break;
         }
     }
-    struct Item item = {.name = name, .type = type, .multiplier = multiplier, .durability = dura};
+    struct Item item = {.name = name, .type = type, .multiplier = multiplier, .durability = dura, .loaded = true, .is_in_inventory = false};
     add_item_array(Arr, &item);
     return (struct Item) item;
 }
@@ -46,15 +46,17 @@ struct Inventory* init_slots() {
 
 void pick_up(struct Inventory* inv, struct Item* item) {
     if(!inv || !item) return;
-    if(inv->size >= 6){
-        //demander de drop un item
+    if(inv->size >= 5){
+        drop_item(inv, &inv->slots[inv->selected]);
     }
+    item->is_in_inventory = true;
     inv->slots[inv->size] = *item;
     return;
 }
 
 void drop_item(struct Inventory* inv, struct Item* item) {
     if(!inv || !item) return;
+    item->is_in_inventory = false;
     for(int i=0; i< inv->size; i++){
         if(&inv->slots[i] == item){
             for(int j=i; i < inv->size; j++){
