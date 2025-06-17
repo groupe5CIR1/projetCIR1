@@ -84,7 +84,6 @@ void player_use(struct Entity* player, struct ItemArray* items) {
 
 
 void look_for_pickup() {
-    //tick loaded entities (except player)
     //look for pickup
 }
 
