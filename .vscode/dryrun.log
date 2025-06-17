@@ -1,11 +1,5 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/isen/C_WSL/Projet/projetCIR1'
-gcc -Wall -Wextra -std=c99 -Iheaders -c -o src/c/logic.o src/c/logic.c
-gcc -Wall -Wextra -std=c99 -Iheaders -c -o src/c/chapters.o src/c/chapters.c
-gcc -Wall -Wextra -std=c99 -Iheaders -c -o src/c/display.o src/c/display.c
-gcc -Wall -Wextra -std=c99 -Iheaders -c -o src/c/entity.o src/c/entity.c
-gcc -Wall -Wextra -std=c99 -Iheaders -c -o src/c/inventory.o src/c/inventory.c
-gcc -Wall -Wextra -std=c99 -Iheaders -c -o src/c/armor.o src/c/armor.c
 gcc -Wall -Wextra -std=c99 -Iheaders -c -o src/c/entityArray.o src/c/entityArray.c
 gcc -Wall -Wextra -std=c99 -Iheaders -c -o src/c/itemArray.o src/c/itemArray.c
 gcc -Wall -Wextra -std=c99 -Iheaders -o server src/c/main.o src/c/print_book.o src/c/logic.o src/c/chapters.o src/c/display.o src/c/entity.o src/c/inventory.o src/c/armor.o src/c/entityArray.o src/c/itemArray.o

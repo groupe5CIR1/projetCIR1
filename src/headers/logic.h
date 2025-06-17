@@ -1,3 +1,6 @@
+#ifndef LOGIC_H
+#define LOGIC_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -33,3 +36,6 @@ void player_use(struct Entity* player, struct ItemArray* items);
 void look_for_pickup();
 
 void update_display();
+
+
+#endif

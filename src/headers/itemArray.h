@@ -1,5 +1,5 @@
-#ifndef ITEM_ARRAY
-#define ITEM_ARRAY
+#ifndef ITEM_ARRAY_H
+#define ITEM_ARRAY_H
 
 #include <stdio.h>
 #include <stdlib.h>

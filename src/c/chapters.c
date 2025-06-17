@@ -70,82 +70,82 @@ void chapter(struct Entities* entities, struct ItemArray* items, int chapter) {
 }
 
 void chapter1(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter2(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter3(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter4(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter5(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter6(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter7(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter8(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter9(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter10(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter11(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter12(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter13(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter14(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter15(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter16(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter17(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter18(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter19(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 
 void chapter20(struct Entities* entities, struct ItemArray* items) {
-
+    printf("chapter created\n");
 }
 

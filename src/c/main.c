@@ -44,9 +44,9 @@ int main(void) {
     *entities.entityArray = init_entity_array();
     *entities.loadedEntities = init_loaded_entity_array();
 
-    struct Entity* player = create_entity(&entities, PLAYER);
-
     struct ItemArray items = init_item_array();
+
+    struct Entity* player = create_entity(&entities, PLAYER);
     
     int chapter, btn, new_chapter, slot, item;
     while(1) {

@@ -19,6 +19,11 @@ all: $(TARGET)
 $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) -o $@ $^
 
+# Special rule for chapters.c to avoid circular dependencies
+src/c/chapters.o: src/c/chapters.c src/headers/chapters.h src/headers/entity.h src/headers/itemArray.h
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+# General rule for other .c files
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
@@ -30,5 +35,4 @@ clean:
 run: $(TARGET)
 	./$(TARGET)
 
-# Phony targets
 .PHONY: all clean run

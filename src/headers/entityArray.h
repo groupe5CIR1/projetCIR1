@@ -1,9 +1,9 @@
-#ifndef ENTITY_ARRAY
-#define ENTITY_ARRAY
+#ifndef ENTITY_ARRAY_H
+#define ENTITY_ARRAY_H
 
 #include <stdio.h>
 
-#include "../headers/entity.h"
+#include "entity.h"
 
 struct Entities {
     struct EntityArray* entityArray;

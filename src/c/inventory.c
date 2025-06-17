@@ -5,6 +5,7 @@ For armor management, see armor.c
 */
 
 #include "../headers/inventory.h"
+#include "../headers/main.h"
 
 
 
@@ -36,12 +37,17 @@ struct Item create_item(struct ItemArray* Arr, int name, int type) {
 }
 
 struct Inventory* init_slots() {
-    struct Item slots[MAX_SLOTS];
-    for(int i=0; i < MAX_SLOTS; i++) {
-        slots[i] = (struct Item){NULL};
+    struct Item slots[MAX_SLOTS] = {};
+    struct Inventory* inv = malloc(sizeof(struct Inventory));
+    if (inv == NULL) {
+        perror("Out of Memory error: failed to allocate memory for inventory");
+        exit(EXIT_FAILURE);
     }
-    struct Inventory inv = {.slots = slots, .size = -1, .weapon = -1, .selected = -1};
-    return (struct Inventory*) &inv;
+    *inv->slots = *slots;
+    inv->size = -1; 
+    inv->weapon = -1;
+    inv->selected = -1;
+    return (struct Inventory*) inv;
 }
 
 void pick_up(struct Inventory* inv, struct Item* item) {
@@ -77,7 +83,7 @@ void update_item_dura(struct ItemArray* Arr, struct Inventory* inv) {
     if(!inv->weapon ) return;
     float *dura = &inv->slots[inv->weapon].durability;
     if(*dura == -1) return;
-    *dura -= 5 * random();
+    *dura -= 5 * randomizer();
     if(*dura <= 0.0) {
         remove_item(Arr, inv, &inv->slots[inv->weapon]);
         //playsound 

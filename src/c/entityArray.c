@@ -80,7 +80,7 @@ The player is ofc not affected by page changes, and should always be loaded.
 */
 
 struct LoadedEntities init_loaded_entity_array() {
-    struct LoadedEntities* array = malloc(2*sizeof(struct Entity));
+    struct Entity* array = malloc(2*sizeof(struct Entity));
     if(array == NULL) {
         perror("Out of Memory error : failed to allocate entity array");
         exit(1);

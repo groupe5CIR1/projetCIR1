@@ -1,5 +1,5 @@
-#ifndef INVENTORY
-#define INVENTORY
+#ifndef INVENTORY_H
+#define INVENTORY_H
 
 #define MAX_SLOTS 6
 
@@ -7,17 +7,17 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#include "../headers/itemArray.h"
+#include "itemArray.h"
 
 enum ITEM {
     POTION,
-    WEAPON
+    WEAPON,
 };
 
 enum NAME {
     ARME_INCROYABLE_SA_GRANMERE,
     DEUXIEME_ARME_INCROYABLE_SA_GRANMERE,
-    ARME_INCASSABLE_C_EST_TROP_BI1_SAMERE
+    ARME_INCASSABLE_C_EST_TROP_BI1_SAMERE,
 };
 
 
@@ -31,7 +31,7 @@ struct Item {
 };
 
 struct Inventory {
-    struct Item slots[MAX_SLOTS];   
+    struct Item slots[MAX_SLOTS];
     int size;
     int weapon;
     int selected;

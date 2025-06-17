@@ -1,3 +1,6 @@
+#ifndef MAIN_H
+#define MAIN_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -22,3 +25,5 @@ int extract_item(char *buffer);
 int extract_slot(char* buffer);
 
 void send_response(int socket, const char *message);
+
+#endif

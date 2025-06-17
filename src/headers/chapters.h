@@ -1,5 +1,10 @@
-#ifndef CHAPTERS
-#define CHAPTERS
+#ifndef CHAPTERS_H
+#define CHAPTERS_H
+
+
+#include "entity.h"
+#include "entityArray.h"
+
 
 void chapter(struct Entities* entities, struct ItemArray* items, int chapter);
 

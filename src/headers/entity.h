@@ -1,5 +1,5 @@
-#ifndef ENTITY
-#define ENTITY
+#ifndef ENTITY_H
+#define ENTITY_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,7 +10,6 @@
 #include "armor.h"
 #include "inventory.h"
 #include "entityArray.h"
-#include "inventory.h"
 
 #define MAX_SLOTS 6
 
@@ -26,22 +25,22 @@ struct Entity {
     bool loaded;
     int type;
     float health;
-    int defaultDamage;
+    float defaultDamage;
     bool shield;
     struct Armor* armor;
     struct Inventory* inventory;
 };
 
 
-struct Entity* create_entity(struct Entities* Arr, int type);
+struct Entity* create_entity(struct Entities* entities, int type);
 
-int get_new_uid(struct Entities* entities);
+int get_new_uid(struct EntityArray* Arr);
 
-void damage(struct Entity* entity, struct Entity* entity2);
+void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* defender);
 
 void death(struct Entities* entities, struct Entity* entity);
 
-void fight(struct ItemArray* items, struct Entities* entities, struct Entity* Player, struct Entity* ennemy);
+void fight(struct ItemArray* items, struct Entities* entities, struct Entity* player, struct Entity* ennemy);
 
 
 void equip_shield();

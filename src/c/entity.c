@@ -4,10 +4,15 @@ For armor management, see armor.c
 For inventory management, see inventory.c
 */
 
-#include "entity.h"
-#include "main.h"
+#include "../headers/entity.h"
+#include "../headers/main.h"
 
-struct Entity* create_entity(struct Entities* entities, int type){
+struct Entity* create_entity(struct Entities* entities, int type) {
+    struct Entity* entity = malloc(sizeof(struct Entity));
+    if (entity == NULL) {
+        perror("Out of Memory error : failed to allocate memory for entity");
+        exit(EXIT_FAILURE);
+    }
     float health;
     float damage;
     int uid = get_new_uid(entities->entityArray);
@@ -25,20 +30,21 @@ struct Entity* create_entity(struct Entities* entities, int type){
             health = 100.0;
             damage = 12.0;
             break;
+        default:
+            free(entity);
+            break;
     }
-    struct Entity entity = {
-        .uid = uid,
-        .loaded = 1,
-        .type = type,
-        .health = health,
-        .defaultDamage = damage,
-        .shield = 0,
-        .armor = NULL,
-        .inventory = init_slots()
-    };
-    add_entity_array(entities->entityArray, &entity);
-    load_entity(entities->loadedEntities, &entity);
-    return (struct Entity*) &entity;
+    entity->uid = uid;
+    entity->loaded = true;
+    entity->type = type;
+    entity->health = health;
+    entity->defaultDamage = damage;
+    entity->shield = false;
+    entity->armor = NULL;
+    entity->inventory = init_slots();
+    add_entity_array(entities->entityArray, entity);
+    load_entity(entities->loadedEntities, entity);
+    return (struct Entity*) entity;
 }
 
 int get_new_uid(struct EntityArray* Arr) {
@@ -71,19 +77,19 @@ void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* def
 void fight(struct ItemArray* items, struct Entities* entities, struct Entity* player, struct Entity* ennemy){
     damage(items, player, ennemy);
     if(ennemy->health <= 0){
-        death(entities, &ennemy);
+        death(entities, ennemy);
     }
     sleep(0.1);
     damage(items, ennemy, player);
     if(player->health <=0){
-        death(entities,&player);
+        death(entities,player);
     }
 }
  
 void death(struct Entities* entities, struct Entity* dead_guy_lol_sounds_like_a_skill_issue){
-    struct Inventory* Inventory = dead_guy_lol_sounds_like_a_skill_issue->inventory->slots;
-    for(int i=0; i < Inventory->size; i++){
-        drop_item(dead_guy_lol_sounds_like_a_skill_issue->inventory, &Inventory[i]);
+    struct Inventory* inv = dead_guy_lol_sounds_like_a_skill_issue->inventory;
+    for(int i=0; i < inv->size; i++){
+        drop_item(dead_guy_lol_sounds_like_a_skill_issue->inventory, &inv->slots[i]);
     }
     unload_entity(entities->loadedEntities, dead_guy_lol_sounds_like_a_skill_issue->uid);
     remove_entity_array(entities->entityArray, dead_guy_lol_sounds_like_a_skill_issue->uid);

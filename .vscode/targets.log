@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jun 17 16:39:40 2025
+# Make data base, printed on Tue Jun 17 17:24:37 2025
 
 # Variables
 
@@ -64,6 +64,7 @@ MFLAGS = -pqrR
 WSL2_GUI_APPS_ENABLED = 1
 # environment
 WAYLAND_DISPLAY = wayland-0
+ 
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # makefile (from 'Makefile', line 1)
@@ -161,39 +162,44 @@ VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 
 # Directories
 
-# . (device 2096, inode 35089): 9 files, no impossibilities.
-# src/c (device 2096, inode 35315): 14 files, no impossibilities so far.
+# . (device 2096, inode 35089): 10 files, no impossibilities.
+# src/c (device 2096, inode 35315): 20 files, no impossibilities so far.
 
-# 23 files, no impossibilities in 2 directories.
+# 30 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
 %.o: %.c
-#  recipe to execute (from 'Makefile', line 23):
+#  recipe to execute (from 'Makefile', line 28):
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 # 1 implicit rules, 0 (0.0%) terminal.
 # Files
 
-# Not a target:
-src/c/display.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/c/display.o: src/c/display.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/c/display'
+#  Last modified 2025-06-17 17:24:18.130898177
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 28):
+	$(CC) $(CFLAGS) -c -o $@ $<
 
-# Not a target:
-src/c/chapters.o:
+src/c/chapters.o: src/c/chapters.c src/headers/chapters.h src/headers/entity.h src/headers/itemArray.h
 #  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+#  Last modified 2025-06-17 17:24:18.098898195
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 24):
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 src/c/main.o: src/c/main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/c/main'
-#  Last modified 2025-06-17 16:23:25.356783873
+#  Last modified 2025-06-17 17:24:17.978898263
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 23):
+#  recipe to execute (from 'Makefile', line 28):
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 # Not a target:
@@ -205,66 +211,92 @@ src/c/itemArray.o:
 src/c/logic.o: src/c/logic.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/c/logic'
+#  Last modified 2025-06-17 17:24:18.058898217
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 28):
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+src/c/entityArray.o: src/c/entityArray.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/c/entityArray'
 #  File does not exist.
 #  File has been updated.
 #  Needs to be updated (-q is set).
 # automatic
-# @ := src/c/logic.o
+# @ := src/c/entityArray.o
 # automatic
-# * := src/c/logic
+# * := src/c/entityArray
 # automatic
-# < := src/c/logic.c
+# < := src/c/entityArray.c
 # automatic
-# + := src/c/logic.c
+# + := src/c/entityArray.c
 # automatic
 # % := 
 # automatic
-# ^ := src/c/logic.c
+# ^ := src/c/entityArray.c
 # automatic
-# ? := src/c/logic.c
+# ? := src/c/entityArray.c
 # automatic
 # | := 
 # variable set hash-table stats:
 # Load=8/32=25%, Rehash=0, Collisions=2/15=13%
-#  recipe to execute (from 'Makefile', line 23):
+#  recipe to execute (from 'Makefile', line 28):
 	$(CC) $(CFLAGS) -c -o $@ $<
-
-# Not a target:
-src/c/entityArray.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
 
 src/c/print_book.o: src/c/print_book.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/c/print_book'
-#  Last modified 2025-06-17 16:23:25.356783873
+#  Last modified 2025-06-17 17:24:18.014898242
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 23):
+#  recipe to execute (from 'Makefile', line 28):
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
- 
-#  Last modified 2025-06-17 16:39:15.932291581
+#  Last modified 2025-06-17 17:24:11.230901784
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
-src/c/entity.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/headers/itemArray.h:
+#  Implicit rule search has been done.
+#  Last modified 2025-06-17 16:49:34.671977965
+#  File has been updated.
+#  Successfully updated.
+
+src/c/entity.o: src/c/entity.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/c/entity'
+#  Last modified 2025-06-17 17:24:18.170898155
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 28):
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 27):
+#  recipe to execute (from 'Makefile', line 32):
 	rm -f $(OBJ) $(TARGET)
+
+# Not a target:
+src/c/entity.c:
+#  Implicit rule search has been done.
+#  Last modified 2025-06-17 16:59:58.2716531
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/c/inventory.c:
+#  Implicit rule search has been done.
+#  Last modified 2025-06-17 13:31:10.226127504
+#  File has been updated.
+#  Successfully updated.
 
 server: src/c/main.o src/c/print_book.o src/c/logic.o src/c/chapters.o src/c/display.o src/c/entity.o src/c/inventory.o src/c/armor.o src/c/entityArray.o src/c/itemArray.o
 #  Implicit rule search has not been done.
@@ -277,6 +309,13 @@ server: src/c/main.o src/c/print_book.o src/c/logic.o src/c/chapters.o src/c/dis
 	$(CC) $(CFLAGS) -o $@ $^
 
 # Not a target:
+src/c/chapters.c:
+#  Implicit rule search has been done.
+#  Last modified 2025-06-17 17:11:49.487283739
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
 src/c/print_book.c:
 #  Implicit rule search has been done.
 #  Last modified 2025-06-17 16:23:25.356783873
@@ -284,17 +323,28 @@ src/c/print_book.c:
 #  Successfully updated.
 
 # Not a target:
-src/c/logic.c:
+src/c/entityArray.c:
 #  Implicit rule search has been done.
-#  Last modified 2025-06-17 15:59:37.189525993
+#  Last modified 2025-06-16 15:23:58.030897621
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
-src/c/armor.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/c/logic.c:
+#  Implicit rule search has been done.
+#  Last modified 2025-06-17 16:52:09.843883239
+#  File has been updated.
+#  Successfully updated.
+
+src/c/armor.o: src/c/armor.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/c/armor'
+ 
+#  Last modified 2025-06-17 17:24:18.238898117
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 28):
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 # Not a target:
 src/c/main.c:
@@ -324,14 +374,45 @@ run: server
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 31):
+#  recipe to execute (from 'Makefile', line 36):
 	./$(TARGET)
 
 # Not a target:
-src/c/inventory.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/headers/chapters.h:
+#  Implicit rule search has been done.
+#  Last modified 2025-06-17 16:55:01.875812078
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/headers/entity.h:
+#  Implicit rule search has been done.
+#  Last modified 2025-06-17 17:08:26.643387416
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+src/c/armor.c:
+#  Implicit rule search has been done.
+#  Last modified 2025-06-17 16:53:24.959860689
+#  File has been updated.
+#  Successfully updated.
+
+src/c/inventory.o: src/c/inventory.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/c/inventory'
+#  Last modified 2025-06-17 17:24:18.206898134
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 28):
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+# Not a target:
+src/c/display.c:
+#  Implicit rule search has been done.
+#  Last modified 2025-06-17 16:40:03.816268308
+#  File has been updated.
+#  Successfully updated.
 
 .PHONY: all clean run
 #  Implicit rule search has not been done.
@@ -339,19 +420,19 @@ src/c/inventory.o:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=21/1024=2%, Rehash=0, Collisions=0/57=0%
+# Load=30/1024=3%, Rehash=0, Collisions=0/86=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 49 / storage = 528 B / avg = 10 B
-# current buf: size = 8162 B / used = 528 B / count = 49 / avg = 10 B
+# strcache buffers: 1 (0) / strings = 70 / storage = 847 B / avg = 12 B
+# current buf: size = 8162 B / used = 847 B / count = 70 / avg = 12 B
 
-# strcache performance: lookups = 69 / hit rate = 28%
+# strcache performance: lookups = 97 / hit rate = 27%
 # hash-table stats:
-# Load=49/8192=1%, Rehash=0, Collisions=0/69=0%
-# Finished Make data base on Tue Jun 17 16:39:40 2025
+# Load=70/8192=1%, Rehash=0, Collisions=0/97=0%
+# Finished Make data base on Tue Jun 17 17:24:37 2025
 
  

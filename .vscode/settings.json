@@ -6,6 +6,7 @@
         "armor.h": "c",
         "inventory.h": "c",
         "entityarray.h": "c",
-        "socket.h": "c"
+        "socket.h": "c",
+        "entity.h": "c"
     }
 }

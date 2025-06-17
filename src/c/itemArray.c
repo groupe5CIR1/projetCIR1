@@ -6,7 +6,7 @@ Note that this does not manage inventories, see "inventory.c" for more informati
 #include "../headers/itemArray.h"
 
 struct ItemArray init_item_array() {
-    struct Entity* array = malloc(2*sizeof(struct Item));
+    struct Item* array = malloc(2*sizeof(struct Item));
     if(array == NULL) {
         perror("Out of Memory error : failed to allocate entity array");
         exit(1);
