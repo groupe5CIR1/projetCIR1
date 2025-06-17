@@ -6,50 +6,74 @@ For inventory management, see inventory.c
 
 #include "entity.h"
 
-struct Entity entity_init(int type){
+struct Entity* create_entity(struct Entities* entities, int type){
     float health;
     float damage;
+    int uid = get_new_uid(entities->entityArray);
     switch (type) {
-    case PLAYER:
-        health = 100.0;
-        damage = 10.0;
-        break;
-    case MONSTER:
-        health = 70.0;
-        damage = 7.0;
-        break;
-    case ENNEMY:
-        health = 90.0;
-        damage = 9.0;
-        break;
+        case PLAYER:
+            uid = 0;
+            health = 100.0;
+            damage = 10.0;
+            break;
+        case MONSTER:
+            health = 70.0;
+            damage = 7.0;
+            break;
+        case ENNEMY:
+            health = 100.0;
+            damage = 12.0;
+            break;
     }
-    return (struct Entity) {
-        .uid = NULL,
+    struct Entity entity = {
+        .uid = uid,
         .loaded = 1,
         .type = type,
         .health = health,
-        .defaultDamage = NULL,
-        .shield = 0, .armor = NULL,
+        .defaultDamage = damage,
+        .shield = 0,
+        .armor = NULL,
         .inventory = init_slots()
     };
+    add_entity_array(entities->entityArray, &entity);
+    load_entity(entities->loadedEntities, &entity);
+    return (struct Entity*) &entity;
 }
 
-void damage(struct Entity* attacker, struct Entity* defender){
-    float item_multiplier = 1;
-    struct Inventory* inv = attacker->inventory;
-    if(inv->weapon) {
-        item_multiplier *= inv->slots[inv->weapon]->multiplier;
+int get_new_uid(struct EntityArray* Arr) {
+    int max_uid = 0;
+    int entity_uid;
+    for (int i=0; i < Arr->size; i++) {
+        entity_uid = Arr->entity_array[i].uid;
+        if (max_uid < entity_uid) max_uid = entity_uid;
     }
-    defender->health -= attacker->defaultDamage * item_multiplier;
-    //ajouter armure
+    return max_uid + 1;
 }
 
-void fight(struct Entities* entities, struct Entity* player, struct Entity* ennemy){
-    damage(player, ennemy);
+void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* defender){
+    float item_multiplier = 1;
+    float armor_reduction = 1;
+    struct Inventory* att_inv = attacker->inventory;
+    struct Armor* def_armor = defender->armor;
+    if (att_inv->weapon > -1) {
+        struct Item* weapon = &att_inv->slots[att_inv->weapon];
+        item_multiplier = weapon->multiplier;
+        update_item_dura(items, att_inv);
+    }
+    if (def_armor) {
+        armor_reduction = def_armor->resistance;
+        def_armor->durability -= 5 * random();  //update_armor_dura à faire
+    }
+    defender->health -= attacker->defaultDamage * item_multiplier * armor_reduction;
+}
+
+void fight(struct ItemArray* items, struct Entities* entities, struct Entity* player, struct Entity* ennemy){
+    damage(items, player, ennemy);
     if(ennemy->health <= 0){
         death(entities, &ennemy);
     }
-    damage(ennemy, player);
+    sleep(0.1);
+    damage(items, ennemy, player);
     if(player->health <=0){
         death(entities,&player);
     }

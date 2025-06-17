@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdbool.h>
+#include <unistd.h>
 
 #include "armor.h"
 #include "inventory.h"
@@ -20,13 +21,6 @@ enum Type {
 };
 
 
-
-struct Inventory {
-    struct Item* slots[MAX_SLOTS];
-    int size;
-    bool weapon;
-};
-
 struct Entity {
     int uid;
     bool loaded;
@@ -39,13 +33,15 @@ struct Entity {
 };
 
 
-struct Entity init_entity(int type);
+struct Entity* create_entity(struct Entities* Arr, int type);
+
+int get_new_uid(struct Entities* entities);
 
 void damage(struct Entity* entity, struct Entity* entity2);
 
 void death(struct Entities* entities, struct Entity* entity);
 
-void fight(struct Entities* entities, struct Entity* Player, struct Entity* ennemy);
+void fight(struct ItemArray* items, struct Entities* entities, struct Entity* Player, struct Entity* ennemy);
 
 
 void equip_shield();
