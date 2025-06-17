@@ -47,11 +47,12 @@ void init_file(FILE* file, char* id) {
         "</head>\n"
         "<body>\n"
         "<div id =\"texte\">";
-    fprintf(file, html_init, id);
+    fprintf(file, html_init, id);   
 }
 
 void end_file(FILE* file) {
-    fprintf(file, "</div></body>\n</html>\n");
+    fprintf(file,
+        "</div><div id=\"combat_container\"><div id =\"box_fight\"><img src=\"../chevalier.png\" alt=\"Chevalier\" id=\"chevalier\"><img src=\"../ennemy.png\"alt =\"ennemy\"id =\"ennemy\"><img src=\"../monster.png\" alt=\"monster\" id=\"monster\"></div><div id=\"box_inventory\"><h1>INVENTAIRE<br><img src=\"../inventory.png\" alt=\"inventaire\" id=\"inventaire\"></div></div></body>\n</html>\n");
     fclose(file);
 }
 

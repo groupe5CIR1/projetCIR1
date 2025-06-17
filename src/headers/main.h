@@ -8,10 +8,12 @@
 #include "print_book.h"
 #include "logic.h"
 #include "entityArray.h"
+#include "entity.h"
+
 
 #define PORT 8080
 
-float random();
+float randomizer();
 
 int extract_chapter(char *buffer);
 

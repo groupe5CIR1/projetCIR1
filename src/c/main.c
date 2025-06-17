@@ -161,6 +161,6 @@ int extract_item(char *buffer) {
     return -1;
 }
 
-float random() {
+float randomizer() {
     return rand() / (float)RAND_MAX;
 }

@@ -1,8 +1,11 @@
 #ifndef ARMOR
 #define ARMOR
 
+
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "entityArray.h"
 
 struct Armor {
     char* name;
