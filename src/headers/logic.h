@@ -23,7 +23,7 @@ enum BUTTON {
 };
 
 
-float btn_logic(struct Entities* entities, struct Entity* player, struct ItemArray* items, bool new_chap, int btn, int slot, int item);
+void btn_logic(struct Entities* entities, struct Entity* player, struct ItemArray* items, bool new_chap, int btn, int slot, int item);
 
 void load_page(struct Entities* entities, struct ItemArray* items, int chapter);
 

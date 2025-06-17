@@ -12,8 +12,8 @@ Note that this file does not manage the sockets that listen to the port 8080, se
 
 
 
-float btn_logic(struct Entities* entities, struct Entity* player, struct ItemArray* items, bool chapter, int btn, int slot, int item) {
-    if(btn == -1 || !chapter) return -1;
+void btn_logic(struct Entities* entities, struct Entity* player, struct ItemArray* items, bool chapter, int btn, int slot, int item) {
+    if(btn == -1 || !chapter) return;
     switch (btn) {
     case NEW_CHAPTER:
         load_page(entities, items, chapter);    //à finir
@@ -40,7 +40,6 @@ float btn_logic(struct Entities* entities, struct Entity* player, struct ItemArr
     }
     look_for_pickup();          //à faire
     update_display();           //à faire, voir display.c
-    return 0;
 }
 
 void load_page(struct Entities* entities, struct ItemArray* items, int chap) {
