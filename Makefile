@@ -27,9 +27,10 @@ src/c/chapters.o: src/c/chapters.c src/headers/chapters.h src/headers/entity.h s
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-# Clean target
+# Clean target - removes object files, executable, and HTML files in export directory
 clean:
 	rm -f $(OBJ) $(TARGET)
+	rm -f src/export/*.html
 
 # Run target
 run: $(TARGET)

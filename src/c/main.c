@@ -6,6 +6,7 @@ The listener part (socket and messages management) was mostly made by ChatGPT.
 #include "../headers/main.h"
 
 int main(void) {
+    printf("\nmain start\n");
     print_book();
 
     int server_fd, new_socket;
@@ -49,7 +50,7 @@ int main(void) {
     struct Entity* player = create_entity(&entities, PLAYER);
     
     int chapter, btn, new_chapter, slot, item;
-    while(1) {
+    while(true) {
         if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen)) < 0) {
             perror("accept");
             continue;
