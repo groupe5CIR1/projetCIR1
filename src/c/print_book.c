@@ -52,7 +52,21 @@ void init_file(FILE* file, char* id) {
 
 void end_file(FILE* file) {
     fprintf(file,
-        "</div><div id=\"combat_container\"><div id =\"box_fight\"><img src=\"../chevalier.png\" alt=\"Chevalier\" id=\"chevalier\"><img src=\"../ennemy.png\"alt =\"ennemy\"id =\"ennemy\"><img src=\"../monster.png\" alt=\"monster\" id=\"monster\"></div><div id=\"box_inventory\"><h1>INVENTAIRE<br><img src=\"../inventory.png\" alt=\"inventaire\" id=\"inventaire\"></div></div></body>\n</html>\n");
+        "</div>\n"
+        "<div id=\"combat_container\">\n"
+            "<div id =\"box_fight\">\n"
+                "<img src=\"../chevalier.png\" alt=\"Chevalier\" id=\"chevalier\">\n"
+                "<img src=\"../ennemy.png\"alt =\"ennemy\"id =\"ennemy\">\n"
+                "<img src=\"../monster.png\" alt=\"monster\" id=\"monster\">\n"
+            "</div>\n"
+            "<div id=\"box_inventory\">\n"
+                "<h1>INVENTAIRE</h1> <br>\n"
+                "<img src=\"../inventory.png\" alt=\"inventaire\" id=\"inventaire\">\n"
+            "</div>\n"
+        "</div>\n"
+        "</body>\n"
+        "</html>\n"
+    );
     fclose(file);
 }
 

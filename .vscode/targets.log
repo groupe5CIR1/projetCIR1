@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Jun 17 17:24:37 2025
+# Make data base, printed on Tue Jun 17 18:35:45 2025
 
 # Variables
 
@@ -64,7 +64,6 @@ MFLAGS = -pqrR
 WSL2_GUI_APPS_ENABLED = 1
 # environment
 WAYLAND_DISPLAY = wayland-0
- 
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # makefile (from 'Makefile', line 1)
@@ -94,6 +93,7 @@ MAKE = $(MAKE_COMMAND)
 # environment
 PATH = /home/isen/.vscode-server/bin/dfaf44141ea9deb3b4096f7cd6d24e00c147a4b1/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/java8path:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/windows/system32:/mnt/c/windows:/mnt/c/windows/System32/Wbem:/mnt/c/windows/System32/WindowsPowerShell/v1.0/:/mnt/c/windows/System32/OpenSSH/:/mnt/c/Program Files/Git/cmd:/mnt/c/Users/doorm/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/doorm/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/doorm/AppData/Local/GitHubDesktop/bin
 # default
+ 
 MAKEFILES := 
 # automatic
 ^F = $(notdir $^)
@@ -154,7 +154,7 @@ CC = gcc
 # environment
 VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # variable set hash-table stats:
-# Load=71/1024=7%, Rehash=0, Collisions=4/111=4%
+# Load=71/1024=7%, Rehash=0, Collisions=4/106=4%
 
 # Pattern-specific Variable Values
 
@@ -162,10 +162,10 @@ VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 
 # Directories
 
-# . (device 2096, inode 35089): 10 files, no impossibilities.
-# src/c (device 2096, inode 35315): 20 files, no impossibilities so far.
+# . (device 2096, inode 35089): 9 files, no impossibilities.
+# src/c (device 2096, inode 35315): 22 files, no impossibilities so far.
 
-# 30 files, no impossibilities in 2 directories.
+# 31 files, no impossibilities in 2 directories.
 
 # Implicit Rules
 
@@ -175,11 +175,12 @@ VSCODE_ESM_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 
 # 1 implicit rules, 0 (0.0%) terminal.
 # Files
+ 
 
 src/c/display.o: src/c/display.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/c/display'
-#  Last modified 2025-06-17 17:24:18.130898177
+#  Last modified 2025-06-17 18:35:36.02371329
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 28):
@@ -187,7 +188,7 @@ src/c/display.o: src/c/display.c
 
 src/c/chapters.o: src/c/chapters.c src/headers/chapters.h src/headers/entity.h src/headers/itemArray.h
 #  Implicit rule search has not been done.
-#  Last modified 2025-06-17 17:24:18.098898195
+#  Last modified 2025-06-17 18:35:35.971713318
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 24):
@@ -196,22 +197,25 @@ src/c/chapters.o: src/c/chapters.c src/headers/chapters.h src/headers/entity.h s
 src/c/main.o: src/c/main.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/c/main'
-#  Last modified 2025-06-17 17:24:17.978898263
+#  Last modified 2025-06-17 18:35:35.755713434
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 28):
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-# Not a target:
-src/c/itemArray.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
+src/c/itemArray.o: src/c/itemArray.c
+#  Implicit rule search has been done.
+#  Implicit/static pattern stem: 'src/c/itemArray'
+#  Last modified 2025-06-17 18:35:36.343713118
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 28):
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 src/c/logic.o: src/c/logic.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/c/logic'
-#  Last modified 2025-06-17 17:24:18.058898217
+#  Last modified 2025-06-17 18:35:35.887713363
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 28):
@@ -220,34 +224,24 @@ src/c/logic.o: src/c/logic.c
 src/c/entityArray.o: src/c/entityArray.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/c/entityArray'
-#  File does not exist.
+#  Last modified 2025-06-17 18:35:36.283713151
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := src/c/entityArray.o
-# automatic
-# * := src/c/entityArray
-# automatic
-# < := src/c/entityArray.c
-# automatic
-# + := src/c/entityArray.c
-# automatic
-# % := 
-# automatic
-# ^ := src/c/entityArray.c
-# automatic
-# ? := src/c/entityArray.c
-# automatic
-# | := 
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=2/15=13%
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 28):
 	$(CC) $(CFLAGS) -c -o $@ $<
+
+# Not a target:
+src/c/itemArray.c:
+ 
+#  Implicit rule search has been done.
+#  Last modified 2025-06-17 17:45:16.854241649
+#  File has been updated.
+#  Successfully updated.
 
 src/c/print_book.o: src/c/print_book.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/c/print_book'
-#  Last modified 2025-06-17 17:24:18.014898242
+#  Last modified 2025-06-17 18:35:35.815713402
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 28):
@@ -256,7 +250,7 @@ src/c/print_book.o: src/c/print_book.c
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2025-06-17 17:24:11.230901784
+#  Last modified 2025-06-17 18:29:29.50390503
 #  File has been updated.
 #  Successfully updated.
 
@@ -270,10 +264,11 @@ src/headers/itemArray.h:
 src/c/entity.o: src/c/entity.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/c/entity'
-#  Last modified 2025-06-17 17:24:18.170898155
+#  Last modified 2025-06-17 18:35:36.087713256
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 28):
+ 
 	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
@@ -283,28 +278,27 @@ clean:
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 32):
 	rm -f $(OBJ) $(TARGET)
+	rm -f src/export/*.html
 
 # Not a target:
 src/c/entity.c:
 #  Implicit rule search has been done.
-#  Last modified 2025-06-17 16:59:58.2716531
+#  Last modified 2025-06-17 18:01:07.937754755
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 src/c/inventory.c:
 #  Implicit rule search has been done.
-#  Last modified 2025-06-17 13:31:10.226127504
+#  Last modified 2025-06-17 18:06:16.30552029
 #  File has been updated.
 #  Successfully updated.
 
 server: src/c/main.o src/c/print_book.o src/c/logic.o src/c/chapters.o src/c/display.o src/c/entity.o src/c/inventory.o src/c/armor.o src/c/entityArray.o src/c/itemArray.o
 #  Implicit rule search has not been done.
-#  File does not exist.
+#  Last modified 2025-06-17 18:35:36.523713022
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 20):
 	$(CC) $(CFLAGS) -o $@ $^
 
@@ -325,7 +319,7 @@ src/c/print_book.c:
 # Not a target:
 src/c/entityArray.c:
 #  Implicit rule search has been done.
-#  Last modified 2025-06-16 15:23:58.030897621
+#  Last modified 2025-06-17 17:44:15.414274015
 #  File has been updated.
 #  Successfully updated.
 
@@ -340,7 +334,7 @@ src/c/armor.o: src/c/armor.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/c/armor'
  
-#  Last modified 2025-06-17 17:24:18.238898117
+#  Last modified 2025-06-17 18:35:36.211713189
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 28):
@@ -349,7 +343,7 @@ src/c/armor.o: src/c/armor.c
 # Not a target:
 src/c/main.c:
 #  Implicit rule search has been done.
-#  Last modified 2025-06-17 16:23:25.356783873
+#  Last modified 2025-06-17 18:19:07.484225146
 #  File has been updated.
 #  Successfully updated.
 
@@ -365,16 +359,14 @@ all: server
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/5=0%
+#  Successfully updated.
 
 run: server
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 36):
+#  recipe to execute (from 'Makefile', line 37):
 	./$(TARGET)
 
 # Not a target:
@@ -387,7 +379,7 @@ src/headers/chapters.h:
 # Not a target:
 src/headers/entity.h:
 #  Implicit rule search has been done.
-#  Last modified 2025-06-17 17:08:26.643387416
+#  Last modified 2025-06-17 18:00:48.465761499
 #  File has been updated.
 #  Successfully updated.
 
@@ -401,7 +393,7 @@ src/c/armor.c:
 src/c/inventory.o: src/c/inventory.c
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'src/c/inventory'
-#  Last modified 2025-06-17 17:24:18.206898134
+#  Last modified 2025-06-17 18:35:36.163713215
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 28):
@@ -420,19 +412,20 @@ src/c/display.c:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=30/1024=3%, Rehash=0, Collisions=0/86=0%
+ 
+# Load=31/1024=3%, Rehash=0, Collisions=0/90=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 70 / storage = 847 B / avg = 12 B
-# current buf: size = 8162 B / used = 847 B / count = 70 / avg = 12 B
+# strcache buffers: 1 (0) / strings = 72 / storage = 878 B / avg = 12 B
+# current buf: size = 8162 B / used = 878 B / count = 72 / avg = 12 B
 
-# strcache performance: lookups = 97 / hit rate = 27%
+# strcache performance: lookups = 101 / hit rate = 28%
 # hash-table stats:
-# Load=70/8192=1%, Rehash=0, Collisions=0/97=0%
-# Finished Make data base on Tue Jun 17 17:24:37 2025
+# Load=72/8192=1%, Rehash=0, Collisions=0/101=0%
+# Finished Make data base on Tue Jun 17 18:35:45 2025
 
  

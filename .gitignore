@@ -1,4 +1,13 @@
-src/*.o
-src/*.exe
-src/*.css
-src/export/*.html
+**.o
+
+**.exe
+server
+
+**.html
+
+**.txt
+**.css
+
+**.png
+
+.vscode/
