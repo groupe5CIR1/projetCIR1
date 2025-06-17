@@ -34,10 +34,6 @@ a, a:visited, a:hover, a:active {
 }
 
 
-p{
-    /*css...*/
-}
-
 p:has(a)::before {
     content: "➤ ";
     margin-right: 0.5em;
