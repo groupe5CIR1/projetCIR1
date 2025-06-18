@@ -287,7 +287,7 @@ char* create_inv_slot(struct Item* item, int i) {
     snprintf(
         button,
         1024,
-        "\n        <img src=\"../%s.png\" alt=\"item\" id=\"item%d\" style=\"position:relative; z-index:100\">\n",
+        "\n        <img src=\"../%s.png\" alt=\"item\" id=\"item%d\" style=\"position:relative; z-index:100;\">\n",
         name,
         i+1
     );
