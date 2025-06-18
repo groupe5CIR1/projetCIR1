@@ -94,7 +94,7 @@ void look_for_pickup() {
     /*
     look for pickup items :
     - remove every item pickup button
-    - find every loaded item (loaded tag)
+    - find every loaded item (loaded tag) that is not in inventory (is_in_inventory tag)
     - create item pickup button for each loaded item
     */
 }
