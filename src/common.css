@@ -118,9 +118,9 @@ p:has(a)::before {
 }
 
 #inventaire{
+    margin-top: 10px;
     position: absolute;
     left: 77%;
-    top: 74%;
     display: flex;
     width: 250px;
     height: 350px;
