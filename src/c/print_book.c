@@ -77,12 +77,6 @@ void add_game_display_file(FILE* file, char* id) {
         "    <div id=\"box_inventory\">\n"
         "        <h1>INVENTAIRE</h1> <br>\n"
         "        <img src=\"../inventory.png\" alt=\"inventaire\" id=\"inventaire\">\n"
-        "        <img src=\"../chevalier.png\" alt=\"item\" id=\"item1\">\n"
-        "        <img src=\"../chevalier.png\" alt=\"item\" id=\"item2\">\n"
-        "        <img src=\"../chevalier.png\" alt=\"item\" id=\"item3\">\n"
-        "        <img src=\"../chevalier.png\" alt=\"item\" id=\"item4\">\n"
-        "        <img src=\"../chevalier.png\" alt=\"item\" id=\"item5\">\n"
-        "        <img src=\"../chevalier.png\" alt=\"item\" id=\"item6\">\n"
         "    </div>\n"
         "</div>\n"
         , chapter, chapter, chapter, chapter

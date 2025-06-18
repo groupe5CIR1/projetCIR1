@@ -254,3 +254,4 @@ void pick_up_button(FILE* file, int id_number) {
     snprintf(buffer, sizeof(buffer), "<button class=\"PICK_UP_%d\">", id_number);
     write_after_balise(file, buffer, "</div>", 5);
 }
+
