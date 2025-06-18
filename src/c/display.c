@@ -26,50 +26,68 @@ void write_after_balise(FILE* file, char* text, char* balise, int b_index) {
     fseek(file, 0, SEEK_END);
     long size = ftell(file);
     rewind(file);
-    
     char* content = malloc(size + 1);
     fread(content, 1, size, file);
     content[size] = '\0';
 
-    // Recherche la balise
-    char* pos = content;
-    int count = 0;
-    char* insert_pos = NULL;
-    
-    while ((pos = strstr(pos, balise)) != NULL) {
-        count++;
-        if (count == b_index) {
-            insert_pos = pos + strlen(balise);
-            break;
-        }
-        pos++;
-    }
-
-    if (!insert_pos) {
-        printf("Balise '%s' non trouvée (index %d)\n", balise, b_index);
+    // Recherche la balise spécifique de l'inventaire
+    char* inventory_img = strstr(content, "<img src=\"../inventory.png\" alt=\"inventaire\" id=\"inventaire\">");
+    if (!inventory_img) {
+        printf("Balise inventaire introuvable\n");
         free(content);
         return;
     }
 
-    // Construit le nouveau contenu
-    long before_len = insert_pos - content;
-    long after_len = size - before_len;
-    char* new_content = malloc(before_len + strlen(text) + after_len + 1);
-    
-    memcpy(new_content, content, before_len);
-    memcpy(new_content + before_len, text, strlen(text));
-    memcpy(new_content + before_len + strlen(text), insert_pos, after_len);
-    new_content[before_len + strlen(text) + after_len] = '\0';
+    // Si on cherche à insérer après la balise d'inventaire
+    if (strcmp(balise, "<img src=\"../inventory.png\" alt=\"inventaire\" id=\"inventaire\">") == 0) {
+        char* insert_pos = inventory_img + strlen("<img src=\"../inventory.png\" alt=\"inventaire\" id=\"inventaire\">");
+        
+        // Construit le nouveau contenu
+        long before_len = insert_pos - content;
+        char* new_content = malloc(before_len + strlen(text) + (size - before_len) + 1);
+        
+        memcpy(new_content, content, before_len);
+        strcpy(new_content + before_len, text);
+        strcpy(new_content + before_len + strlen(text), insert_pos);
 
-    // Réécrit tout le fichier
-    rewind(file);
-    fwrite(new_content, 1, strlen(new_content), file);
-    fflush(file);
+        // Réécrit le fichier
+        rewind(file);
+        fwrite(new_content, 1, strlen(new_content), file);
+        fflush(file);
+        free(new_content);
+    }
+    else {
+        // Cas général pour les autres balises (conservé de votre version originale)
+        char* pos = content;
+        int count = 0;
+        char* insert_pos = NULL;
+        
+        while ((pos = strstr(pos, balise))) {
+            count++;
+            if (count == b_index) {
+                insert_pos = pos + strlen(balise);
+                break;
+            }
+            pos++;
+        }
+
+        if (insert_pos) {
+            long before_len = insert_pos - content;
+            char* new_content = malloc(before_len + strlen(text) + (size - before_len) + 1);
+            
+            memcpy(new_content, content, before_len);
+            strcpy(new_content + before_len, text);
+            strcpy(new_content + before_len + strlen(text), insert_pos);
+
+            rewind(file);
+            fwrite(new_content, 1, strlen(new_content), file);
+            fflush(file);
+            free(new_content);
+        }
+    }
 
     free(content);
-    free(new_content);
 }
-
 
 void update_fight_image(FILE* file, int type, bool display) {
     const char* id;
@@ -187,10 +205,11 @@ void update_inventory(struct Inventory* inv, int chapter) {
     fclose(file);
     FILE* f = fopen(filename, "r+");
 
+    char* pattern = "<img src=\"../inventory.png\" alt=\"inventaire\" id=\"inventaire\">";
     for (int i=0; i < inv->size; i++) {
         button = create_inv_slot(&inv->slots[i], i);
         printf("adding text : %s\n", button);
-        write_after_balise(f, button, "<h1>INVENTAIRE</h1> <br>", 1);
+        write_after_balise(f, button, pattern, 1);
         free(button);
     }
     fclose(f);
@@ -268,7 +287,7 @@ char* create_inv_slot(struct Item* item, int i) {
     snprintf(
         button,
         1024,
-        "\n        <img src=\"../%s.png\" alt=\"item\" id=\"item%d\">\n",
+        "\n        <img src=\"../%s.png\" alt=\"item\" id=\"item%d\" style=\"position:relative; z-index:100\">\n",
         name,
         i
     );
