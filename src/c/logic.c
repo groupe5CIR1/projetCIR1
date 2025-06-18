@@ -12,7 +12,7 @@ Note that this file does not manage the sockets that listen to the port 8080, se
 
 
 
-void btn_logic(struct Entities* entities, struct Entity* player, struct ItemArray* items, bool chapter, int btn, int slot, int item) {
+void btn_logic(struct Entities* entities, struct Entity* player, struct ItemArray* items, int chapter, int btn, int slot, int item) {
     if(btn == -1 || !chapter) return;
     switch (btn) {
     case NEW_CHAPTER:
@@ -39,7 +39,7 @@ void btn_logic(struct Entities* entities, struct Entity* player, struct ItemArra
         break;
     }
     look_for_pickup();          //à faire
-    update_display();           //à faire, voir display.c
+    update_display(entities, player, items, chapter, btn, slot, item);           //à faire, voir display.c
 }
 
 void load_page(struct Entities* entities, struct ItemArray* items, int chap) {
@@ -59,7 +59,8 @@ void load_page(struct Entities* entities, struct ItemArray* items, int chap) {
 void fight_all(struct ItemArray* items, struct Entities* entities, struct Entity* player) {
     struct LoadedEntities* loaded_ntts = entities->loadedEntities;
     for(int i=0; i < loaded_ntts->size; i++) {
-        fight(items, entities, player, &loaded_ntts->loaded_entities[i]);
+        if (loaded_ntts->loaded_entities[i].type != PLAYER)
+            fight(items, entities, player, &loaded_ntts->loaded_entities[i]);
     }
 }
 
@@ -87,6 +88,6 @@ void look_for_pickup() {
     //look for pickup
 }
 
-void update_display() {
+void update_display(struct Entities* entities, struct Entity* player, struct ItemArray* items, int chapter, int btn, int slot, int item) {
 
 }

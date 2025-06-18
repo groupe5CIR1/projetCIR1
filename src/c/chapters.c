@@ -2,9 +2,17 @@
 
 
 void chapter(struct Entities* entities, struct ItemArray* items, int chapter) {
+    char filename[256];
+    char* zero = chapter < 10 ? "0": "";
+    snprintf(filename, sizeof(filename), "src/export/%s%d.html", zero, chapter);
+    FILE *file = fopen(filename, "r+");
+    if (!file) {
+        perror("Error opening file for new chapter");
+        exit(1);
+    }
     switch (chapter) {
         case 1:
-            chapter1(entities, items);
+            chapter1(file, entities, items);
             break;
         case 2:
             chapter2(entities, items);
@@ -69,8 +77,10 @@ void chapter(struct Entities* entities, struct ItemArray* items, int chapter) {
     }
 }
 
-void chapter1(struct Entities* entities, struct ItemArray* items) {
-    printf("chapter created\n");
+void chapter1(FILE* file, struct Entities* entities, struct ItemArray* items) {
+    printf("chapter 1 creating\n");
+    create_entity(entities, MONSTER);
+    update_fight_image(file, MONSTER, true);
 }
 
 void chapter2(struct Entities* entities, struct ItemArray* items) {

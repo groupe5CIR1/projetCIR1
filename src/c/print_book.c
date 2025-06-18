@@ -64,9 +64,10 @@ void add_game_display_file(FILE* file, char* id) {
         "</div>\n"
         "<div id=\"combat_container\">\n"
         "    <div id=\"box_fight\">\n"
-        "        <img src=\"../chevalier.png\" alt=\"Chevalier\" id=\"chevalier\">\n"
-        "        <img src=\"../ennemy.png\"alt =\"ennemy\"id =\"ennemy\">\n"
-        "        <img src=\"../monster.png\" alt=\"monster\" id=\"monster\">\n"
+                //Toujours avoir style=\"display:none;\" à la fin de la balise pour que update_fight_image() fonctionne correctement
+        "        <img src=\"../chevalier.png\" alt=\"chevalier\" id=\"chevalier\" style=\"display:block;\">\n"
+        "        <img src=\"../ennemy.png\" alt=\"ennemy\" id=\"ennemy\" style=\"display:none;\">\n"
+        "        <img src=\"../monster.png\" alt=\"monster\" id=\"monster\" style=\"display:none;\">\n"
         "    </div>\n"
         "    <div id=\"control_buttons\">\n"
         "        <button id=\"FIGHT\" onclick=\"sendButton(1, %d, -1)\">Fight</button>\n"

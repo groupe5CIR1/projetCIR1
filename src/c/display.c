@@ -67,8 +67,51 @@ void write_after_balise(FILE* file,  char* text, char* balise, int b_index) { //
 }
 
 
-void update_fight_image(FILE* file, char* link) {
+void update_fight_image(FILE* file, int type, bool display) {
+    const char* id;
+    switch (type) {
+        case MONSTER: id = "monster"; break;
+        case ENNEMY:  id = "ennemy";  break;
+        case PLAYER:  id = "chevalier"; break;
+        default: return;
+    }
 
+    // Lire tout le fichier
+    fseek(file, 0, SEEK_END);
+    long size = ftell(file);    //Taille du fichier
+    rewind(file);
+    char* content = malloc(size + 1);   //Contenu du fichier
+    fread(content, 1, size, file);
+    content[size] = '\0';
+
+    //Cherche la balise
+    char pattern[64];
+    snprintf(pattern, sizeof(pattern), "id=\"%s\"", id);
+    char* img_tag = strstr(content, pattern);
+    if (!img_tag) {
+        free(content);
+        return;
+    }
+
+    //Cherche le style (= toujours le dernier attribut avant '>')
+    char* style_start = strstr(img_tag, "style=\"display:");
+    char* style_end = strchr(img_tag, '>');
+    if (!style_start || !style_end || style_start > style_end) {
+        free(content);
+        return;
+    }
+
+    long prefix_len = style_start - content;
+    long suffix_pos = style_end - content;
+
+    //Réécrit le fichier
+    freopen(NULL, "w", file);
+    fwrite(content, 1, prefix_len, file);
+    fprintf(file, "style=\"display:%s;\"", display ? "block" : "none");
+    fwrite(content + suffix_pos, 1, size - suffix_pos, file);
+
+    free(content);
+    fflush(file);
 }
 
 void update_button(FILE* file, int btn) {

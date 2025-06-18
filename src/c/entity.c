@@ -5,7 +5,7 @@ For inventory management, see inventory.c
 */
 
 #include "../headers/entity.h"
-#include "../headers/main.h"
+
 
 struct Entity* create_entity(struct Entities* entities, int type) {
     struct Entity* entity = malloc(sizeof(struct Entity));
@@ -60,6 +60,7 @@ int get_new_uid(struct EntityArray* Arr) {
 void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* defender) {
     float item_multiplier = 1;
     float armor_reduction = 1;
+    float random_factor = 0.8 + 0.2 * randomizer();
     struct Inventory* att_inv = attacker->inventory;
     struct Armor* def_armor = defender->armor;
     if (att_inv->weapon > -1) {
@@ -71,28 +72,36 @@ void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* def
         armor_reduction = def_armor->resistance;
         def_armor->durability -= 5 * (float)randomizer();  //update_armor_dura à faire
     }
-    defender->health -= attacker->defaultDamage * item_multiplier * armor_reduction;
+    defender->health -= attacker->defaultDamage * item_multiplier * armor_reduction * random_factor;
 }
 
 void fight(struct ItemArray* items, struct Entities* entities, struct Entity* player, struct Entity* ennemy) {
+    printf("Player turn !\n");
     damage(items, player, ennemy);
     if(ennemy->health <= 0){
         death(items, entities, ennemy);
     }
+    printf("player hp : %f\n", player->health);
+    printf("ennemy hp : %f\n", ennemy->health);
     sleep(0.1);
+    printf("Ennemy turn !\n");
     damage(items, ennemy, player);
     if(player->health <=0){
         death(items, entities, player);
     }
+    printf("player hp : %f\n", player->health);
+    printf("ennemy hp : %f\n", ennemy->health);
 }
  
 void death(struct ItemArray* items, struct Entities* entities, struct Entity* dead_guy_lol_sounds_like_a_skill_issue) {
+    printf("%d died !\n", dead_guy_lol_sounds_like_a_skill_issue->type);
     struct Inventory* inv = dead_guy_lol_sounds_like_a_skill_issue->inventory;
     for(int i=0; i < inv->size; i++){
         drop_item(dead_guy_lol_sounds_like_a_skill_issue->inventory, &inv->slots[i]);
     }
     unload_entity(entities->loadedEntities, dead_guy_lol_sounds_like_a_skill_issue->uid);
     remove_entity_array(items, entities->entityArray, dead_guy_lol_sounds_like_a_skill_issue->uid);
+    //update_fight_image
 }
 
 

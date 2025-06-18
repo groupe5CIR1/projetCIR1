@@ -10,6 +10,7 @@
 #include "armor.h"
 #include "inventory.h"
 #include "entityArray.h"
+#include "../headers/main.h"
 
 #define MAX_SLOTS 6
 

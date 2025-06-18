@@ -49,7 +49,11 @@ int main(void) {
 
     struct Entity* player = create_entity(&entities, PLAYER);
     
-    int chapter, btn, new_chapter, slot, item;
+    int chapter = 0;
+    int btn, new_chapter, slot, item;
+    bool new_load = true;
+    char* message;
+    char response[1024];
     while(true) {
         if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen)) < 0) {
             perror("accept");
@@ -73,46 +77,59 @@ int main(void) {
         slot = -1;
         item = -1;
         if (strstr(buffer, "\"button\":0")) {   //on page loading
-            printf("NEW_CHAPTER (0)\n");
-            send_response(new_socket, "NEW_CHAPTER (0)");
+            printf("NEW_CHAPTER (0) : \n");
+            message = "NEW_CHAPTER (0)";
+            printf("current chapter : %d\n", chapter);
             new_chapter = extract_chapter(buffer);
-            if(chapter < new_chapter) {        //prevents reload exploits
+            printf("new chapter : %d\n", new_chapter);
+            new_load = chapter < new_chapter;
+            if (new_load) {        //prevents reload exploits
                 btn = NEW_CHAPTER;
                 chapter = new_chapter;
+                printf("success, loaded chapter %d\n\n", chapter);
+            } else {
+                printf("failed, no change for chapter %d\n\n", chapter);
             }
         }
         else if (strstr(buffer, "\"button\":1")) {
             printf("Bouton FIGHT pressé (1)\n");
-            send_response(new_socket, "Bouton FIGHT reçu (1)");
+            message = "Bouton FIGHT reçu (1)";
             btn = FIGHT;
         }
         else if (strstr(buffer, "\"button\":2")) {
             printf("Bouton PICK_UP pressé (2)\n");
-            send_response(new_socket, "Bouton PICK_UP reçu (2)");
+            message = "Bouton PICK_UP reçu (2)";
             btn = PICK_UP;
             item = extract_item(buffer);
         }
         else if (strstr(buffer, "\"button\":3")) {
             printf("Bouton DROP pressé (3)\n");
-            send_response(new_socket, "Bouton DROP reçu (3)");
+            message = "Bouton DROP reçu (3)";
             btn = DROP;
         }
         else if (strstr(buffer, "\"button\":4")) {
             printf("Bouton USE pressé (4)\n");
-            send_response(new_socket, "Bouton USE reçu (4)");
+            message = "Bouton USE reçu (4)";
             btn = USE;
         }
         else if (strstr(buffer, "\"button\":5")) {
             printf("Bouton SLOT pressé (5)\n");
-            send_response(new_socket, "Bouton SLOT reçu (5)");
+            message = "Bouton SLOT reçu (5)";
             btn = SLOT;
             slot = extract_slot(buffer);
         }
         else {
             printf("Commande inconnue\n");
-            send_response(new_socket, "Commande inconnue");
+            message = "Commande inconnue";
         }
         btn_logic(&entities, player, &items, chapter, btn, slot, item);
+
+        if (new_load) {
+            snprintf(response, sizeof(response), "REFRESH : %s", message);
+        } else {
+            snprintf(response, sizeof(response), "%s", message);
+        }
+        send_response(new_socket, response);
         
         close(new_socket);
         memset(buffer, 0, 1024);

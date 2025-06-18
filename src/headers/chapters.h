@@ -4,11 +4,12 @@
 
 #include "entity.h"
 #include "entityArray.h"
+#include "display.h"
 
 
 void chapter(struct Entities* entities, struct ItemArray* items, int chapter);
 
-void chapter1(struct Entities* entities, struct ItemArray* items);
+void chapter1(FILE* file, struct Entities* entities, struct ItemArray* items);
 
 void chapter2(struct Entities* entities, struct ItemArray* items);
 
