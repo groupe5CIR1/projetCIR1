@@ -18,6 +18,9 @@ bool btn_logic(struct Entities* entities, struct Entity* player, struct ItemArra
     switch (btn) {
     case NEW_CHAPTER:
         load_page(entities, items, chapter);    //chapters à faire
+        if (chapter == 1) {
+            player_pickup(player, items, POTION, chapter);
+        }
         break;
     case FIGHT:
         fight_all(items, entities, player, chapter);

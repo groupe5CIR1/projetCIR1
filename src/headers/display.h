@@ -19,6 +19,10 @@ void update_button(FILE* file, int btn, bool display);
 
 void update_inventory(struct Inventory* inv, int chapter);
 
+void clear_inventory(FILE* file);
+
 char* create_inv_slot(struct Item* item, int i);
+
+void pick_up_button(FILE* file, int id_number);
 
 #endif

@@ -228,11 +228,19 @@ void clear_inventory(FILE* file) {
 
 char* create_inv_slot(struct Item* item, int i) {
     char button[64];
+    char* name;
+    switch(item->name) {
+        case ARME_INCROYABLE_SA_GRANMERE: name = "ARME_INCROYABLE_SA_GRANMERE"; break;
+        case DEUXIEME_ARME_INCROYABLE_SA_GRANMERE: name = "DEUXIEME_ARME_INCROYABLE_SA_GRANMERE"; break;
+        case ARME_INCASSABLE_C_EST_TROP_BI1_SAMERE: name = "ARME_INCASSABLE_C_EST_TROP_BI1_SAMERE"; break;
+        case POTION_HEAL: name = "POTION"; break;
+        default: break;
+    }
     snprintf(
         button,
         sizeof(button),
         "        <img src=\"../%s.png\" alt=\"item\" id=\"item%d\">\n",
-        item->name,
+        name,
         i
     );
     return button[64];
@@ -240,7 +248,7 @@ char* create_inv_slot(struct Item* item, int i) {
 
 
 
-void pick_up_button(FILE* file, int id_number){
+void pick_up_button(FILE* file, int id_number) {
     if(id_number> 4) return;
     char buffer[64];
     snprintf(buffer, sizeof(buffer), "<button class=\"PICK_UP_%d\">", id_number);

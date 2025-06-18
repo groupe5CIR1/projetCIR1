@@ -80,6 +80,7 @@ void chapter(struct Entities* entities, struct ItemArray* items, int chapter) {
 void chapter1(FILE* file, struct Entities* entities, struct ItemArray* items) {
     printf("chapter 1 creating\n");
     create_entity(entities, MONSTER);
+    create_item(items, POTION_HEAL, POTION);
     update_fight_image(file, MONSTER, true);
 }
 
