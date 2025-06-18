@@ -233,7 +233,7 @@ char* create_inv_slot(struct Item* item, int i) {
         case ARME_INCROYABLE_SA_GRANMERE: name = "ARME_INCROYABLE_SA_GRANMERE"; break;
         case DEUXIEME_ARME_INCROYABLE_SA_GRANMERE: name = "DEUXIEME_ARME_INCROYABLE_SA_GRANMERE"; break;
         case ARME_INCASSABLE_C_EST_TROP_BI1_SAMERE: name = "ARME_INCASSABLE_C_EST_TROP_BI1_SAMERE"; break;
-        case POTION_HEAL: name = "POTION"; break;
+        case POTION_HEAL: name = "POTION_HEAL"; break;
         default: break;
     }
     snprintf(

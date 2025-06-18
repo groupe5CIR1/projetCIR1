@@ -62,16 +62,18 @@ void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* def
     float armor_reduction = 1;
     float random_factor = 0.8 + 0.2 * randomizer();
     struct Inventory* att_inv = attacker->inventory;
-    struct Armor* def_armor = defender->armor;
+    //struct Armor* def_armor = defender->armor;
     if (att_inv->weapon > -1) {
         struct Item* weapon = &att_inv->slots[att_inv->weapon];
         item_multiplier = weapon->multiplier;
         update_item_dura(items, att_inv, chapter);
     }
+    /*
     if (def_armor) {
         armor_reduction = def_armor->resistance;
         def_armor->durability -= 5 * (float)randomizer();  //update_armor_dura à faire
     }
+    */
     defender->health -= attacker->defaultDamage * item_multiplier * armor_reduction * random_factor;
 }
 
