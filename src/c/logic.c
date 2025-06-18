@@ -92,7 +92,6 @@ void look_for_pickup() {
     - find every loaded item (loaded tag)
     - create item pickup button for each loaded item
     */
-
 }
 
 //Inutile, les fonctions pour display (= modif le fichier) sont appelées à chaque fois qu'un changement est fait

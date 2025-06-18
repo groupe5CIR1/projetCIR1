@@ -164,3 +164,10 @@ void update_button(FILE* file, int btn, bool display) {
     free(content);
     fflush(file);
 }
+
+void pick_up_button(FILE* file, int id_number){
+    if(id_number> 4) return;
+    char buffer[64];
+    snprintf(buffer, sizeof(buffer), "<button class=\"PICK_UP_%d\">", id_number);
+    write_after_balise(file, buffer, "</div>", 5);
+}
