@@ -289,7 +289,7 @@ char* create_inv_slot(struct Item* item, int i) {
         1024,
         "\n        <img src=\"../%s.png\" alt=\"item\" id=\"item%d\" style=\"position:relative; z-index:100\">\n",
         name,
-        i
+        i+1
     );
     return button;
 }
