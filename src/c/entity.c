@@ -94,7 +94,13 @@ void fight(struct ItemArray* items, struct Entities* entities, struct Entity* pl
 }
  
 void death(struct ItemArray* items, struct Entities* entities, struct Entity* dead_guy_lol_sounds_like_a_skill_issue) {
-    printf("%d died !\n", dead_guy_lol_sounds_like_a_skill_issue->type);
+    char* type;
+    switch (dead_guy_lol_sounds_like_a_skill_issue->type) {
+        case MONSTER: type = "Monster"; break;
+        case ENNEMY: type = "Ennemy"; break;
+        default: type = "Unknown entity"; break;
+    }
+    printf("%s died !\n", type);
     struct Inventory* inv = dead_guy_lol_sounds_like_a_skill_issue->inventory;
     for(int i=0; i < inv->size; i++){
         drop_item(dead_guy_lol_sounds_like_a_skill_issue->inventory, &inv->slots[i]);
