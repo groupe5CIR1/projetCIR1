@@ -164,3 +164,76 @@ void update_button(FILE* file, int btn, bool display) {
     free(content);
     fflush(file);
 }
+
+
+void update_inventory(struct Inventory* inv, int chapter) {
+    char* button;
+    char filename[256];
+    char* zero = chapter < 10 ? "0": "";
+    snprintf(filename, sizeof(filename), "src/export/%s%d.html", zero, chapter);
+    FILE *file = fopen(filename, "r+");
+    if (!file) {
+        perror("Error opening file for new chapter");
+        exit(1);
+    }
+
+    clear_inventory(file);
+    for (int i=0; i < inv->size; i++) {
+        button = create_inv_slot(&inv->slots[i], i);
+        write_after_balise(file, button, "<br>", 0);
+    }
+    fclose(file);
+}
+
+void clear_inventory(FILE* file) {
+    //Lit le contenu
+    fseek(file, 0, SEEK_END);
+    long size = ftell(file);    //Taille du contenu
+    rewind(file);
+    char* content = malloc(size + 1);   //content = contenu du fichier
+    fread(content, 1, size, file);
+    content[size] = '\0';
+
+    //Cherche "id=inventaire"
+    char* inv_start = strstr(content, "id=\"inventaire\"");
+    if (!inv_start) {
+        free(content);
+        return;
+    }
+
+    //Cherche le début de la balise img
+    char* img_start = inv_start;
+    while (img_start > content && *img_start != '<') {
+        img_start--;
+    }
+
+    //Cherche la balise </div> de fin
+    char* div_end = strstr(inv_start, "</div>");
+    if (!div_end) {
+        free(content);
+        return;
+    }
+
+    //Parties à conserver
+    int before_len = (int)(img_start - content);
+    int after_len = (int)(strlen(div_end));
+
+    freopen(NULL, "w", file);
+    fwrite(content, 1, before_len, file);
+    fwrite(div_end, 1, after_len, file);
+    
+    fflush(file);
+    free(content);
+}
+
+char* create_inv_slot(struct Item* item, int i) {
+    char button[64];
+    snprintf(
+        button,
+        sizeof(button),
+        "        <img src=\"../%s.png\" alt=\"item\" id=\"item%d\">\n",
+        item->name,
+        i
+    );
+    return button[64];
+}

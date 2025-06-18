@@ -14,6 +14,7 @@ Note that this file does not manage the sockets that listen to the port 8080, se
 
 bool btn_logic(struct Entities* entities, struct Entity* player, struct ItemArray* items, int chapter, int btn, int slot, int item) {
     if(btn == -1 || !chapter) return false;
+    struct Inventory* inv = player->inventory;
     switch (btn) {
     case NEW_CHAPTER:
         load_page(entities, items, chapter);    //chapters à faire
@@ -25,20 +26,20 @@ bool btn_logic(struct Entities* entities, struct Entity* player, struct ItemArra
         player_pickup(player, items, item, chapter);     //modif le html pour avoir un btn par item à pickup
         break;
     case DROP:
-        struct Inventory* inv = player->inventory;
         drop_item(inv, &inv->slots[inv->selected], chapter);
         break;
     case USE:
         player_use(player, items, chapter);
         break;
     case SLOT:
-        player->inventory->selected = slot;
+        inv->selected = slot;
         break;
     default:
         printf("Unknown button\n");
         break;
     }
     look_for_pickup();          //à faire
+    update_inventory(inv, chapter);
     update_display(entities, player, items, chapter, btn, slot, item);           //Inutile, voir définition
     return true;
 }

@@ -17,4 +17,8 @@ void update_fight_image(FILE* file, int type, bool display);
 
 void update_button(FILE* file, int btn, bool display);
 
+void update_inventory(struct Inventory* inv, int chapter);
+
+char* create_inv_slot(struct Item* item, int i);
+
 #endif
