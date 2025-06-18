@@ -125,3 +125,45 @@ p:has(a)::before {
     height: 350px;
     border-radius: 20px;
 }
+
+#item1{
+    position: absolute;
+    width: 80px;
+    left: 79%;
+    top: 77%;
+}
+
+#item2{
+    position: absolute;
+    width: 80px;
+    left: 79%;
+    top: 93%;
+}
+
+#item3{
+    position: absolute;
+    width: 80px;
+    left: 79%;
+    top: 110%;
+}
+
+#item4{
+    position: absolute;
+    width: 80px;
+    left: 87%;
+    top: 77%
+}
+
+#item5{
+    position: absolute;
+    width: 80px;
+    left: 87%;
+    top: 93%;
+}
+
+#item6{
+    position: absolute;
+    width: 80px;
+    left: 87%;
+    top: 110%;
+}
