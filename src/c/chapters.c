@@ -84,6 +84,8 @@ void chapter1(FILE* file, struct Entities* entities, struct ItemArray* items) {
     update_fight_image(file, MONSTER, true);
 }
 
+
+//Chapitres à faire + changer signature
 void chapter2(struct Entities* entities, struct ItemArray* items) {
     printf("chapter created\n");
 }
