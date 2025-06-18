@@ -36,7 +36,6 @@ void player_use(struct Entity* player, struct ItemArray* items, int chapter);
 
 void look_for_pickup();
 
-void update_display(struct Entities* entities, struct Entity* player, struct ItemArray* items, int chapter, int btn, int slot, int item);
 
 
 #endif

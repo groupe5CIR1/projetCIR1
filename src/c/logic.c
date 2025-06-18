@@ -43,7 +43,6 @@ bool btn_logic(struct Entities* entities, struct Entity* player, struct ItemArra
     }
     look_for_pickup();          //à faire
     update_inventory(inv, chapter);
-    update_display(entities, player, items, chapter, btn, slot, index_item);           //Inutile, voir définition
     return true;
 }
 
@@ -100,7 +99,4 @@ void look_for_pickup() {
     */
 }
 
-//Inutile, les fonctions pour display (= modif le fichier) sont appelées à chaque fois qu'un changement est fait
-void update_display(struct Entities* entities, struct Entity* player, struct ItemArray* items, int chapter, int btn, int slot, int item) {
 
-}

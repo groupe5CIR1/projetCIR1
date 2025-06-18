@@ -8,9 +8,7 @@
 #include "entity.h"
 
 
-void get_text(FILE* file, char* balise, int b_index);
 void write_after_balise(FILE* file, char* text, char* balise, int b_index);
-void delete(FILE* file, char* text, char* balise, int b_index);
 
 
 void update_fight_image(FILE* file, int type, bool display);

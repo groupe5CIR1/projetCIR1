@@ -12,11 +12,6 @@ See "main.c" for more information.
 #include "../headers/display.h"
 
 
-//Inutile
-void get_text(FILE* file, char* balise, int b_index) {
-
-}
-
 
 //Ajoute "texte" après la "b_index"-ième balise fermante "balise". Toujours utiliser une balise fermante en paramètre, ex: </div>. L'indice commence à 1.
 void write_after_balise(FILE* file, char* text, char* balise, int b_index) {
