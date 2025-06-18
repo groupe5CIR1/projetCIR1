@@ -18,6 +18,6 @@ void equip(struct Entity* player, struct Armor* armor);
 
 void drop_armor(struct Entity* player, struct Armor* armor);
 
-void free_armor(struct Armor* armor);
+void free_armor(struct Armor* armor); 
 
 #endif
