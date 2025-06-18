@@ -45,11 +45,11 @@ struct Inventory* init_slots();
 
 void pick_up(struct Inventory* inv, struct Item* item);
 
-void drop_item(struct Inventory* inv, struct Item* item);
+void drop_item(struct Inventory* inv, struct Item* item, int chapter);
 
-void update_item_dura(struct ItemArray* Arr, struct Inventory* inv);
+void update_item_dura(struct ItemArray* Arr, struct Inventory* inv, int chapter);
 
-void remove_item(struct ItemArray* Arr, struct Inventory* inv, struct Item* item);
+void remove_item(struct ItemArray* Arr, struct Inventory* inv, struct Item* item, int chapter);
 
 void free_inventory(struct ItemArray* items, struct Inventory* inv);
 

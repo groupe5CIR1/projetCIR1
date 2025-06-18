@@ -12,21 +12,21 @@ Note that this file does not manage the sockets that listen to the port 8080, se
 
 
 
-void btn_logic(struct Entities* entities, struct Entity* player, struct ItemArray* items, int chapter, int btn, int slot, int item) {
-    if(btn == -1 || !chapter) return;
+bool btn_logic(struct Entities* entities, struct Entity* player, struct ItemArray* items, int chapter, int btn, int slot, int item) {
+    if(btn == -1 || !chapter) return false;
     switch (btn) {
     case NEW_CHAPTER:
-        load_page(entities, items, chapter);    //à finir
+        load_page(entities, items, chapter);    //chapters à faire
         break;
     case FIGHT:
-        fight_all(items, entities, player);
+        fight_all(items, entities, player, chapter);
         break;
     case PICK_UP:
         player_pickup(player, items, item);     //modif le html pour avoir un btn par item à pickup
         break;
     case DROP:
         struct Inventory* inv = player->inventory;
-        drop_item(inv, &inv->slots[inv->selected]);
+        drop_item(inv, &inv->slots[inv->selected], chapter);
         break;
     case USE:
         player_use(player, items);
@@ -39,7 +39,8 @@ void btn_logic(struct Entities* entities, struct Entity* player, struct ItemArra
         break;
     }
     look_for_pickup();          //à faire
-    update_display(entities, player, items, chapter, btn, slot, item);           //à faire, voir display.c
+    update_display(entities, player, items, chapter, btn, slot, item);           //Inutile, voir définition
+    return true;
 }
 
 void load_page(struct Entities* entities, struct ItemArray* items, int chap) {
@@ -56,11 +57,11 @@ void load_page(struct Entities* entities, struct ItemArray* items, int chap) {
     chapter(entities, items, chap);     //load entity & item chapters
 }
 
-void fight_all(struct ItemArray* items, struct Entities* entities, struct Entity* player) {
+void fight_all(struct ItemArray* items, struct Entities* entities, struct Entity* player, int chapter) {
     struct LoadedEntities* loaded_ntts = entities->loadedEntities;
     for(int i=0; i < loaded_ntts->size; i++) {
         if (loaded_ntts->loaded_entities[i].type != PLAYER)
-            fight(items, entities, player, &loaded_ntts->loaded_entities[i]);
+            fight(items, entities, player, &loaded_ntts->loaded_entities[i], chapter);
     }
 }
 
@@ -85,9 +86,16 @@ void player_use(struct Entity* player, struct ItemArray* items) {
 
 
 void look_for_pickup() {
-    //look for pickup
+    /*
+    look for pickup items :
+    - remove every item pickup button
+    - find every loaded item (loaded tag)
+    - create item pickup button for each loaded item
+    */
+
 }
 
+//Inutile, les fonctions pour display (= modif le fichier) sont appelées à chaque fois qu'un changement est fait
 void update_display(struct Entities* entities, struct Entity* player, struct ItemArray* items, int chapter, int btn, int slot, int item) {
 
 }

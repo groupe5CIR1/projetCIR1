@@ -24,11 +24,11 @@ enum BUTTON {
 };
 
 
-void btn_logic(struct Entities* entities, struct Entity* player, struct ItemArray* items, int chapter, int btn, int slot, int item);
+bool btn_logic(struct Entities* entities, struct Entity* player, struct ItemArray* items, int chapter, int btn, int slot, int item);
 
 void load_page(struct Entities* entities, struct ItemArray* items, int chapter);
 
-void fight_all(struct ItemArray* items, struct Entities* entities, struct Entity* player);
+void fight_all(struct ItemArray* items, struct Entities* entities, struct Entity* player, int chapter);
 
 void player_pickup(struct Entity* player, struct ItemArray* items, int item);
 

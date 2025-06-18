@@ -15,6 +15,6 @@ void delete(FILE* file, char* text, char* balise, int b_index);
 
 void update_fight_image(FILE* file, int type, bool display);
 
-void update_button(FILE* file, int btn);
+void update_button(FILE* file, int btn, bool display);
 
 #endif

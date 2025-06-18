@@ -51,7 +51,7 @@ int main(void) {
     
     int chapter = 0;
     int btn, new_chapter, slot, item;
-    bool new_load = true;
+    bool refresh = true;
     char* message;
     char response[1024];
     while(true) {
@@ -82,8 +82,8 @@ int main(void) {
             printf("current chapter : %d\n", chapter);
             new_chapter = extract_chapter(buffer);
             printf("new chapter : %d\n", new_chapter);
-            new_load = chapter < new_chapter;
-            if (new_load) {        //prevents reload exploits
+            refresh = chapter < new_chapter;
+            if (refresh) {        //prevents reload exploits
                 btn = NEW_CHAPTER;
                 chapter = new_chapter;
                 printf("success, loaded chapter %d\n\n", chapter);
@@ -122,9 +122,9 @@ int main(void) {
             printf("Commande inconnue\n");
             message = "Commande inconnue";
         }
-        btn_logic(&entities, player, &items, chapter, btn, slot, item);
 
-        if (new_load) {
+        refresh |= btn_logic(&entities, player, &items, chapter, btn, slot, item);      //btn forces a refresh
+        if (refresh) {
             snprintf(response, sizeof(response), "REFRESH : %s", message);
         } else {
             snprintf(response, sizeof(response), "%s", message);

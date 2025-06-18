@@ -37,11 +37,11 @@ struct Entity* create_entity(struct Entities* entities, int type);
 
 int get_new_uid(struct EntityArray* Arr);
 
-void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* defender);
+void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* defender, int chapter);
 
-void death(struct ItemArray* items, struct Entities* entities, struct Entity* entity);
+void death(struct ItemArray* items, struct Entities* entities, struct Entity* entity, int chapter);
 
-void fight(struct ItemArray* items, struct Entities* entities, struct Entity* player, struct Entity* ennemy);
+void fight(struct ItemArray* items, struct Entities* entities, struct Entity* player, struct Entity* ennemy, int chapter);
 
 
 void equip_shield();

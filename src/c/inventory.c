@@ -60,7 +60,7 @@ void pick_up(struct Inventory* inv, struct Item* item) {
     return;
 }
 
-void drop_item(struct Inventory* inv, struct Item* item) {
+void drop_item(struct Inventory* inv, struct Item* item, int chapter) {
     if(!inv || !item) return;
     item->is_in_inventory = false;
     for(int i=0; i< inv->size; i++){
@@ -79,19 +79,19 @@ void drop_item(struct Inventory* inv, struct Item* item) {
     }
 }
 
-void update_item_dura(struct ItemArray* items, struct Inventory* inv) {
+void update_item_dura(struct ItemArray* items, struct Inventory* inv, int chapter) {
     if(!inv->weapon ) return;
     float *dura = &inv->slots[inv->weapon].durability;
     if(*dura == -1) return;
     *dura -= 5 * randomizer();
     if(*dura <= 0.0) {
-        remove_item(items, inv, &inv->slots[inv->weapon]);
+        remove_item(items, inv, &inv->slots[inv->weapon], chapter);
         //playsound 
     }
 }
 
-void remove_item(struct ItemArray* items, struct Inventory* inv, struct Item* item) {
-    drop_item(inv, item);
+void remove_item(struct ItemArray* items, struct Inventory* inv, struct Item* item, int chapter) {
+    drop_item(inv, item, chapter);
     remove_item_array(items, item);
 }
 

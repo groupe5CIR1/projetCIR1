@@ -57,7 +57,7 @@ int get_new_uid(struct EntityArray* Arr) {
     return max_uid + 1;
 }
 
-void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* defender) {
+void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* defender, int chapter) {
     float item_multiplier = 1;
     float armor_reduction = 1;
     float random_factor = 0.8 + 0.2 * randomizer();
@@ -66,7 +66,7 @@ void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* def
     if (att_inv->weapon > -1) {
         struct Item* weapon = &att_inv->slots[att_inv->weapon];
         item_multiplier = weapon->multiplier;
-        update_item_dura(items, att_inv);
+        update_item_dura(items, att_inv, chapter);
     }
     if (def_armor) {
         armor_reduction = def_armor->resistance;
@@ -75,39 +75,52 @@ void damage(struct ItemArray* items, struct Entity* attacker, struct Entity* def
     defender->health -= attacker->defaultDamage * item_multiplier * armor_reduction * random_factor;
 }
 
-void fight(struct ItemArray* items, struct Entities* entities, struct Entity* player, struct Entity* ennemy) {
+void fight(struct ItemArray* items, struct Entities* entities, struct Entity* player, struct Entity* ennemy, int chapter) {
     printf("Player turn !\n");
-    damage(items, player, ennemy);
+    damage(items, player, ennemy, chapter);
     if(ennemy->health <= 0){
-        death(items, entities, ennemy);
+        death(items, entities, ennemy, chapter);
     }
     printf("player hp : %f\n", player->health);
     printf("ennemy hp : %f\n", ennemy->health);
     sleep(0.1);
     printf("Ennemy turn !\n");
-    damage(items, ennemy, player);
+    damage(items, ennemy, player, chapter);
     if(player->health <=0){
-        death(items, entities, player);
+        death(items, entities, player, chapter);
     }
     printf("player hp : %f\n", player->health);
     printf("ennemy hp : %f\n", ennemy->health);
 }
  
-void death(struct ItemArray* items, struct Entities* entities, struct Entity* dead_guy_lol_sounds_like_a_skill_issue) {
-    char* type;
-    switch (dead_guy_lol_sounds_like_a_skill_issue->type) {
-        case MONSTER: type = "Monster"; break;
-        case ENNEMY: type = "Ennemy"; break;
-        default: type = "Unknown entity"; break;
+void death(struct ItemArray* items, struct Entities* entities, struct Entity* dead_guy_lol_sounds_like_a_skill_issue, int chapter) {
+    int type = dead_guy_lol_sounds_like_a_skill_issue->type;
+    char* name;
+    char filename[256];
+    char* zero = chapter < 10 ? "0": "";
+    snprintf(filename, sizeof(filename), "src/export/%s%d.html", zero, chapter);
+
+    switch (type) {
+        case MONSTER: name = "Monster"; break;
+        case ENNEMY: name = "Ennemy"; break;
+        default: name = "Unknown entity"; break;
     }
-    printf("%s died !\n", type);
+    printf("%s died !\n", name);
+
     struct Inventory* inv = dead_guy_lol_sounds_like_a_skill_issue->inventory;
     for(int i=0; i < inv->size; i++){
-        drop_item(dead_guy_lol_sounds_like_a_skill_issue->inventory, &inv->slots[i]);
+        drop_item(dead_guy_lol_sounds_like_a_skill_issue->inventory, &inv->slots[i], chapter);
     }
     unload_entity(entities->loadedEntities, dead_guy_lol_sounds_like_a_skill_issue->uid);
+
+    FILE *file = fopen(filename, "r+");
+    if (!file) {
+        perror("Error opening file for new chapter");
+        exit(1);
+    }
+    update_fight_image(file, type, false);
+
     remove_entity_array(items, entities->entityArray, dead_guy_lol_sounds_like_a_skill_issue->uid);
-    //update_fight_image
 }
 
 
