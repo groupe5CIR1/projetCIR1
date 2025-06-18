@@ -118,6 +118,7 @@ p:has(a)::before {
 }
 
 #inventaire{
+    opacity: 0.5;
     margin-top: 10px;
     position: absolute;
     left: 77%;
@@ -128,6 +129,7 @@ p:has(a)::before {
 }
 
 #item1{
+    opacity: 1;
     position: absolute;
     width: 80px;
     left: 79%;
