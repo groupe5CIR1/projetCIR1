@@ -43,7 +43,7 @@ struct Item create_item(struct ItemArray* Arr, int name, int type);
 
 struct Inventory* init_slots();
 
-void pick_up(struct Inventory* inv, struct Item* item);
+void pick_up(struct Inventory* inv, struct Item* item, int chapter);
 
 void drop_item(struct Inventory* inv, struct Item* item, int chapter);
 

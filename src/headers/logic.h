@@ -30,9 +30,9 @@ void load_page(struct Entities* entities, struct ItemArray* items, int chapter);
 
 void fight_all(struct ItemArray* items, struct Entities* entities, struct Entity* player, int chapter);
 
-void player_pickup(struct Entity* player, struct ItemArray* items, int item);
+void player_pickup(struct Entity* player, struct ItemArray* items, int item, int chapter);
 
-void player_use(struct Entity* player, struct ItemArray* items);
+void player_use(struct Entity* player, struct ItemArray* items, int chapter);
 
 void look_for_pickup();
 

@@ -50,10 +50,10 @@ struct Inventory* init_slots() {
     return (struct Inventory*) inv;
 }
 
-void pick_up(struct Inventory* inv, struct Item* item) {
+void pick_up(struct Inventory* inv, struct Item* item, int chapter) {
     if(!inv || !item) return;
     if(inv->size >= 5){
-        drop_item(inv, &inv->slots[inv->selected]);
+        drop_item(inv, &inv->slots[inv->selected], chapter);
     }
     item->is_in_inventory = true;
     inv->slots[inv->size] = *item;
