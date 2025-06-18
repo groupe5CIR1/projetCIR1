@@ -18,51 +18,53 @@ void get_text(FILE* file, char* balise, int b_index) {
 }
 
 
-//Ajoute "texte" après la "b_index"-ième balise fermante "balise". Toujours utiliser une balise fermante en paramètre, ex: </div>
-void write_after_balise(FILE* file,  char* text, char* balise, int b_index) { 
-    // Lit tout le fichier en mémoire
+//Ajoute "texte" après la "b_index"-ième balise fermante "balise". Toujours utiliser une balise fermante en paramètre, ex: </div>. L'indice commence à 1.
+void write_after_balise(FILE* file, char* text, char* balise, int b_index) {
+    if (b_index < 1) return;
+
+    // Lit tout le contenu du fichier
     fseek(file, 0, SEEK_END);
     long size = ftell(file);
     rewind(file);
-
+    
     char* content = malloc(size + 1);
     fread(content, 1, size, file);
     content[size] = '\0';
 
-    // Cherche la b_index-ième occurrence de la balise
-    int count = 0;
+    // Recherche la balise
     char* pos = content;
-    char* insert_point = NULL;
-
+    int count = 0;
+    char* insert_pos = NULL;
+    
     while ((pos = strstr(pos, balise)) != NULL) {
         count++;
         if (count == b_index) {
-            insert_point = pos + strlen(balise); // après la balise
+            insert_pos = pos + strlen(balise);
             break;
         }
-        pos += strlen(balise);
+        pos++;
     }
 
-    if (insert_point == NULL) {
-        printf("Balise %s non trouvée %d fois.\n", balise, b_index);
+    if (!insert_pos) {
+        printf("Balise '%s' non trouvée (index %d)\n", balise, b_index);
         free(content);
         return;
     }
 
     // Construit le nouveau contenu
-    size_t before_len = insert_point - content;
-    size_t new_size = size + strlen(text);
-    char* new_content = malloc(new_size + 1);
+    long before_len = insert_pos - content;
+    long after_len = size - before_len;
+    char* new_content = malloc(before_len + strlen(text) + after_len + 1);
+    
+    memcpy(new_content, content, before_len);
+    memcpy(new_content + before_len, text, strlen(text));
+    memcpy(new_content + before_len + strlen(text), insert_pos, after_len);
+    new_content[before_len + strlen(text) + after_len] = '\0';
 
-    strncpy(new_content, content, before_len);
-    new_content[before_len] = '\0';
-    strcat(new_content, text);
-    strcat(new_content, insert_point);
-
-    // Réécrit dans le fichier
-    freopen(NULL, "w", file); // rouvre le même fichier en écriture (efface contenu)
+    // Réécrit tout le fichier
+    rewind(file);
     fwrite(new_content, 1, strlen(new_content), file);
-    fflush(file); // Assure que tout est bien écrit
+    fflush(file);
 
     free(content);
     free(new_content);
@@ -115,6 +117,8 @@ void update_fight_image(FILE* file, int type, bool display) {
     free(content);
     fflush(file);
 }
+
+
 
 //Quasiment la même fonction que update_fight_image, à voir pour optimiser et avoir au final une seule fonction
 void update_button(FILE* file, int btn, bool display) {
@@ -171,6 +175,7 @@ void update_inventory(struct Inventory* inv, int chapter) {
     char filename[256];
     char* zero = chapter < 10 ? "0": "";
     snprintf(filename, sizeof(filename), "src/export/%s%d.html", zero, chapter);
+    printf("editing file %s\n", filename);
     FILE *file = fopen(filename, "r+");
     if (!file) {
         perror("Error opening file for new chapter");
@@ -178,56 +183,80 @@ void update_inventory(struct Inventory* inv, int chapter) {
     }
 
     clear_inventory(file);
+    printf("cleared inventory file\n");
+    fclose(file);
+    FILE* f = fopen(filename, "r+");
+
     for (int i=0; i < inv->size; i++) {
         button = create_inv_slot(&inv->slots[i], i);
-        write_after_balise(file, button, "<br>", 0);
+        printf("adding text : %s\n", button);
+        write_after_balise(f, button, "<h1>INVENTAIRE</h1> <br>", 1);
+        free(button);
     }
-    fclose(file);
+    fclose(f);
 }
 
 void clear_inventory(FILE* file) {
-    //Lit le contenu
+    printf("clearing inventory file\n");
+    
+    // Lit le contenu du fichier
     fseek(file, 0, SEEK_END);
-    long size = ftell(file);    //Taille du contenu
+    long size = ftell(file);
     rewind(file);
-    char* content = malloc(size + 1);   //content = contenu du fichier
+    char* content = malloc(size + 1);
     fread(content, 1, size, file);
     content[size] = '\0';
 
-    //Cherche "id=inventaire"
+    // Trouve la section inventaire
     char* inv_start = strstr(content, "id=\"inventaire\"");
     if (!inv_start) {
         free(content);
         return;
     }
 
-    //Cherche le début de la balise img
-    char* img_start = inv_start;
-    while (img_start > content && *img_start != '<') {
-        img_start--;
+    // Trouve le début de la div parente
+    char* div_start = inv_start;
+    while (div_start > content && *div_start != '<') {
+        div_start--;
     }
 
-    //Cherche la balise </div> de fin
-    char* div_end = strstr(inv_start, "</div>");
-    if (!div_end) {
+    // Trouve la fin de la section inventaire
+    char* inv_end = strstr(inv_start, "</div>");
+    if (!inv_end) {
         free(content);
         return;
     }
+    inv_end += 6; // Après "</div>"
 
-    //Parties à conserver
-    int before_len = (int)(img_start - content);
-    int after_len = (int)(strlen(div_end));
-
-    freopen(NULL, "w", file);
-    fwrite(content, 1, before_len, file);
-    fwrite(div_end, 1, after_len, file);
+    // Construit le nouveau contenu en gardant la balise inventaire
+    long before_len = div_start - content;
+    long after_len = size - (inv_end - content);
     
+    char* new_content = malloc(before_len + (inv_end - div_start) + after_len + 1);
+    
+    // Copie la partie avant
+    memcpy(new_content, content, before_len);
+    
+    // Copie la balise inventaire complète (de <div...> à </div>)
+    memcpy(new_content + before_len, div_start, inv_end - div_start);
+    
+    // Copie la partie après
+    memcpy(new_content + before_len + (inv_end - div_start), inv_end, after_len);
+    
+    new_content[before_len + (inv_end - div_start) + after_len] = '\0';
+
+    // Réécrit le fichier
+    rewind(file);
+    fwrite(new_content, 1, strlen(new_content), file);
     fflush(file);
+
     free(content);
+    free(new_content);
 }
 
+
 char* create_inv_slot(struct Item* item, int i) {
-    char button[64];
+    char* button = malloc(1024*sizeof(char));
     char* name;
     switch(item->name) {
         case ARME_INCROYABLE_SA_GRANMERE: name = "ARME_INCROYABLE_SA_GRANMERE"; break;
@@ -238,12 +267,12 @@ char* create_inv_slot(struct Item* item, int i) {
     }
     snprintf(
         button,
-        sizeof(button),
+        1024,
         "        <img src=\"../%s.png\" alt=\"item\" id=\"item%d\">\n",
         name,
         i
     );
-    return button[64];
+    return button;
 }
 
 
