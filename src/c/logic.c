@@ -12,21 +12,22 @@ Note that this file does not manage the sockets that listen to the port 8080, se
 
 
 
-bool btn_logic(struct Entities* entities, struct Entity* player, struct ItemArray* items, int chapter, int btn, int slot, int item) {
+bool btn_logic(struct Entities* entities, struct Entity* player, struct ItemArray* items, int chapter, int btn, int slot, int index_item) {
     if(btn == -1 || !chapter) return false;
     struct Inventory* inv = player->inventory;
     switch (btn) {
     case NEW_CHAPTER:
         load_page(entities, items, chapter);    //chapters à faire
         if (chapter == 1) {
-            player_pickup(player, items, POTION, chapter);
+            player_pickup(player, items, 0, chapter);
+            printf("player picked up item : %d\n", player->inventory->slots[0]);
         }
         break;
     case FIGHT:
         fight_all(items, entities, player, chapter);
         break;
     case PICK_UP:
-        player_pickup(player, items, item, chapter);     //modif le html pour avoir un btn par item à pickup
+        player_pickup(player, items, index_item, chapter);     //modif le html pour avoir un btn par item à pickup
         break;
     case DROP:
         drop_item(inv, &inv->slots[inv->selected], chapter);
@@ -43,7 +44,7 @@ bool btn_logic(struct Entities* entities, struct Entity* player, struct ItemArra
     }
     look_for_pickup();          //à faire
     update_inventory(inv, chapter);
-    update_display(entities, player, items, chapter, btn, slot, item);           //Inutile, voir définition
+    update_display(entities, player, items, chapter, btn, slot, index_item);           //Inutile, voir définition
     return true;
 }
 
@@ -69,13 +70,15 @@ void fight_all(struct ItemArray* items, struct Entities* entities, struct Entity
     }
 }
 
-void player_pickup(struct Entity* player, struct ItemArray* items, int item, int chapter) {
+void player_pickup(struct Entity* player, struct ItemArray* items, int index_item, int chapter) {
     int loaded_item_counter = 0;
     for (int i=0; i < items->size; i++) {
         if (items->itemArray[i].loaded) {
-            loaded_item_counter == item
-            ? pick_up(player->inventory, &items->itemArray[i], chapter)
-            : loaded_item_counter++;
+            printf("loaded item : %d\n", items->itemArray[i].name);
+            if (loaded_item_counter == index_item) {
+                pick_up(player->inventory, &items->itemArray[i], chapter);
+            }
+            loaded_item_counter++;
         }
     }
 }
