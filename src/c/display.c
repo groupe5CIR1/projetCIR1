@@ -289,7 +289,7 @@ char* create_inv_slot(struct Item* item, int i) {
     return button;
 }
 
-
+ 
 
 void pick_up_button(FILE* file, int id_number) {
     if(id_number> 4) return;
