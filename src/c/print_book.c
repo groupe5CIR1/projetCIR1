@@ -71,7 +71,6 @@ void add_game_display_file(FILE* file, char* id) {
         "    </div>\n"
         "    <div id=\"control_buttons\">\n"
         "        <button id=\"FIGHT\" onclick=\"sendButton(1, %d, -1)\">Fight</button>\n"
-        "        <button id=\"PICKUP\" onclick=\"sendButton(2, %d, -1)\">Pick Up</button>\n"
         "        <button id=\"DROP\" onclick=\"sendButton(3, %d, -1)\">Drop</button>\n"
         "        <button id=\"USE\" onclick=\"sendButton(4, %d, -1)\">Use</button>\n"
         "    </div>\n"
