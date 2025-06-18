@@ -58,8 +58,7 @@ void pick_up(struct Inventory* inv, struct Item* item, int chapter) {
     }
     item->is_in_inventory = true;
     inv->slots[inv->size] = *item;
-    printf("picked up item %d\n", item->name);
-    printf("inv 0 : %d\n", inv->slots[inv->size].name);
+    printf("player picked up item %d\n", item->name);
     inv->size++;
 }
 

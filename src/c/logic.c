@@ -20,7 +20,6 @@ bool btn_logic(struct Entities* entities, struct Entity* player, struct ItemArra
         load_page(entities, items, chapter);    //chapters à faire
         if (chapter == 1) {
             player_pickup(player, items, 0, chapter);
-            printf("player picked up item : %d\n", player->inventory->slots[0]);
         }
         break;
     case FIGHT:
