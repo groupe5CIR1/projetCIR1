@@ -32,6 +32,7 @@ struct Item create_item(struct ItemArray* items, int name, int type) {
         }
     }
     struct Item item = {.name = name, .type = type, .multiplier = multiplier, .durability = dura, .loaded = true, .is_in_inventory = false};
+    printf("\ncreated item %d\n", name);
     add_item_array(items, &item);
     return (struct Item) item;
 }
@@ -44,7 +45,7 @@ struct Inventory* init_slots() {
         exit(EXIT_FAILURE);
     }
     *inv->slots = *slots;
-    inv->size = -1; 
+    inv->size = 0;
     inv->weapon = -1;
     inv->selected = -1;
     return (struct Inventory*) inv;
@@ -57,7 +58,9 @@ void pick_up(struct Inventory* inv, struct Item* item, int chapter) {
     }
     item->is_in_inventory = true;
     inv->slots[inv->size] = *item;
-    return;
+    printf("picked up item %d\n", item->name);
+    printf("inv 0 : %d\n", inv->slots[inv->size].name);
+    inv->size++;
 }
 
 void drop_item(struct Inventory* inv, struct Item* item, int chapter) {
