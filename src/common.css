@@ -192,3 +192,8 @@ p:has(a)::before {
     margin-left: 20px;
     margin-right: 20px;
 }
+
+button{
+    border-radius: 8px;
+    border: 2px solid red;
+}
