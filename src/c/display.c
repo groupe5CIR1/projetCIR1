@@ -18,8 +18,8 @@ void get_text(FILE* file, char* balise, int b_index) {
 }
 
 
-//Inutile
-void write_after_balise(FILE* file,  char* text, char* balise, int b_index) { //ending balise only ex:</div> else risk of writing inside the content of a already existing balise
+//Ajoute "texte" après la "b_index"-ième balise fermante "balise". Toujours utiliser une balise fermante en paramètre, ex: </div>
+void write_after_balise(FILE* file,  char* text, char* balise, int b_index) { 
     // Lit tout le fichier en mémoire
     fseek(file, 0, SEEK_END);
     long size = ftell(file);
@@ -165,7 +165,7 @@ void update_button(FILE* file, int btn, bool display) {
     fflush(file);
 }
 
-
+//Raffraichit l'inventaire
 void update_inventory(struct Inventory* inv, int chapter) {
     char* button;
     char filename[256];
@@ -237,6 +237,9 @@ char* create_inv_slot(struct Item* item, int i) {
     );
     return button[64];
 }
+
+
+
 void pick_up_button(FILE* file, int id_number){
     if(id_number> 4) return;
     char buffer[64];
