@@ -22,14 +22,14 @@ bool btn_logic(struct Entities* entities, struct Entity* player, struct ItemArra
         fight_all(items, entities, player, chapter);
         break;
     case PICK_UP:
-        player_pickup(player, items, item);     //modif le html pour avoir un btn par item à pickup
+        player_pickup(player, items, item, chapter);     //modif le html pour avoir un btn par item à pickup
         break;
     case DROP:
         struct Inventory* inv = player->inventory;
         drop_item(inv, &inv->slots[inv->selected], chapter);
         break;
     case USE:
-        player_use(player, items);
+        player_use(player, items, chapter);
         break;
     case SLOT:
         player->inventory->selected = slot;
@@ -65,23 +65,23 @@ void fight_all(struct ItemArray* items, struct Entities* entities, struct Entity
     }
 }
 
-void player_pickup(struct Entity* player, struct ItemArray* items, int item) {
+void player_pickup(struct Entity* player, struct ItemArray* items, int item, int chapter) {
     int loaded_item_counter = 0;
     for (int i=0; i < items->size; i++) {
         if (items->itemArray[i].loaded) {
             loaded_item_counter == item
-            ? pick_up(player->inventory, &items->itemArray[i])
+            ? pick_up(player->inventory, &items->itemArray[i], chapter)
             : loaded_item_counter++;
         }
     }
 }
 
-void player_use(struct Entity* player, struct ItemArray* items) {
+void player_use(struct Entity* player, struct ItemArray* items, int chapter) {
     struct Item* selected_item = &player->inventory->slots[player->inventory->selected];
     if (selected_item->type == POTION) {
         player->health += 30;
     }
-    remove_item(items, player->inventory, selected_item);
+    remove_item(items, player->inventory, selected_item, chapter);
 }
 
 
